@@ -4,11 +4,11 @@ import { Requests } from "./request.js"
 export class Index{
 
     static indexRender(){
-        const token = localStorage.getItem("@kenzieRedeSocial:token")
-        if(token){
-          
-            window.location.replace("/src/pages/dashboard.html")
-            //tira o token e nao deixa armazeinamento 
+        const token = localStorage.getItem("@empresaToken:token")
+        if(token){   
+            console.log(token )       
+            window.location.assign("src/pages/dashboard.html")
+            
         }
     }
 

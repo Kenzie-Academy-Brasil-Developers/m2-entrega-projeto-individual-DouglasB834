@@ -118,8 +118,8 @@ export class CriarModal {
         const junior    = document.createElement("option")
         const pleno     = document.createElement("option")
         const senior    = document.createElement("option")
-        const nivel    = document.createElement("option")
-        nivel.innerText   = "qual e seu nivel ?"
+        const nivel     = document.createElement("option")
+        nivel.innerText     = "qual e seu nivel ?"
         estagio.innerText   = "estágio"
         estagio.value       = "estágio"
         junior.value        = "júnior"

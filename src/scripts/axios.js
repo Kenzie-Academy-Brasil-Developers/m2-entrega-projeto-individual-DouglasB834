@@ -6,7 +6,7 @@ let Headers = {}
     if(token){
         Headers = {
             "Content-Type": "application/json",
-            Authorization: `Token ${token}`
+            Authorization: `Bearer ${token}`
         }
     }else{
         Headers = {

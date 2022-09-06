@@ -1,3 +1,4 @@
+
 import { instance } from "./axios.js";
 import { Toast } from "./tost.js";
 
@@ -30,7 +31,6 @@ export class Requests {
             .post("auth/register/user", data)
             .then(async res => {
                 Toast.create("Cadastrado com sucesso!!")
-
             })
             .catch(error => {
                 Toast.create("Cadastro invalido", "red;")
@@ -60,8 +60,52 @@ export class Requests {
         return posts
     }
 
+    // FUNCIONARIOS NORMAL
+    // Listar todos os funcionários do mesmo departamento (usuario normal)
+    static async funcionarioDepartamento(nomeDep){
+        const funcionários = await instance
+        .get(`users/departments/${nomeDep}`)
+        .then(res => {
+            Toast.create("listando os Funcionarios do departamento..." ,"gray")
+        })
+        .catch(error =>{
+            Toast.create(error, red)
+        })
+    }
 
-    // pesquisar todos os usuarios na page
+    //listar os departamentos da empresa na qual o usuário faz parte
+    static async depDaEmpresaDoFuncinario(dep){
+        const departamento = await instance
+        .get(`users/${dep}`)
+        .then(res =>{
+            Toast.create("listando os departamentos da empresa..,", "#35a953")
+        })
+        .catch(error =>{
+            Toast.create(error,"#f2867d")
+        })
+    }
+
+    static async atualizaInf(data){
+        const atualziar = await instance
+        patch("users",data)
+        .then(res =>{
+            Toast.create("atualizando informações","#35a953")
+        })
+        .catch(error =>{
+            Toast.create(error,"#f2867d")
+        })
+        /*
+        oque preciso 
+        {
+            "username": "Bertoldo",
+            "email": "bertoldo@mail.com",
+            "password": "senha123"
+        }
+        
+        */ 
+    }
+
+
 
 
 }

@@ -124,3 +124,25 @@ body{
     color: var(--grey3);
 
 }
+
+/* dark mode */
+.darkMode {
+    width: 50px;
+    height: 26px;
+    padding: 5px;
+    display: flex;
+    transform: scale(1);
+    position: relative;
+    align-items: center;
+    border-radius: 1rem;
+    background-color: var(--grey3);
+    justify-content: space-between;
+}
+
+.sair{
+    border-radius: 5px;
+    padding: .6rem;
+    background-color: var(--grey3);
+    color: var(--whiteFixed);
+    font-weight: 600;
+}
