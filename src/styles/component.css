@@ -1,0 +1,126 @@
+
+
+:root{
+    --brand-1: #4263eb;
+    --brand-2: #364fc7;
+
+    /* grey */
+    --grey0:#0A0C0D ;
+    --grey1: #212529;
+    --grey2:#495057 ;
+    --grey3: #868E96;
+    --grey4: #DEE2E6;
+
+    --grey-opacidade: rgba(33, 37, 41, 0.5);
+    --whiteFixed: #fff ; 
+
+    --title1:1.7rem;
+    --title2: 1.2rem;
+
+    --text1: 1rem;
+    --text2: .9rem;
+    --text3: .9rem;
+
+    --bg-modal: rgba(33, 37, 41, 0.5);
+    --boy-bg:#DCDDE1;
+
+}
+
+.darkMode1:root{
+    --boy-bg: #212529;
+
+    --brand-1: #4263eb;
+    --brand-2: #364fc7;
+
+    /* grey */
+    --grey0:#0A0C0D ;
+    --grey1: #DEE2E6;
+    --grey2:#495057 ;
+    --grey3: #868E96;
+    --grey4: #868E96;
+
+    --grey-opacidade: rgba(33, 37, 41, 0.5);
+    --whiteFixed: rgb(75, 74, 74) ;
+
+   
+
+    --title1:1.7rem;
+    --title2: 1.2rem;
+
+    --texte1: 1rem;
+    --texte2: .9rem;
+    --texte3: .9rem;
+   
+}
+
+body{
+    background-color: var(--boy-bg);
+    transition: .3s linear;
+}
+
+
+
+.btn-geral{font-weight: 700;
+    text-transform: uppercase;
+    background-color: #003B49;
+    margin: 0px;
+    padding: 17px 40px 17px 40px;
+    transition:  .3s linear;
+}
+
+.btn-geral:hover{
+    background-color: rgb(255, 125, 68);
+}
+
+
+/* Titulo da secão  */
+.title {
+    text-align: center;
+    padding: 2.5rem 0;
+}
+
+.title  span{
+    color: var(--grey1);;
+    background: rgba(0, 140, 255, 0.3);
+    font-size: 2rem;
+    border-radius: .5rem;
+    display: inline-block;
+    padding: .2rem 1rem;
+    text-transform: uppercase;
+}
+.title  span .spce {
+    background: none;
+}
+ 
+
+/* cabeçalho geral  */
+.cabecalho {
+    width: 100%;
+    background-color: var(--grey1);
+    height: 75px;
+
+}
+
+.cabecalho__container {   
+    width: 100%;
+    max-width: 90%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+
+}
+
+.cabecalho__container-logo  > h2{
+    color: var(--whiteFixed);
+ 
+}
+
+.cabecalho>.cabecalho__container-logo img {
+  
+}
+.fa-fire{
+    color: var(--grey3);
+
+}
