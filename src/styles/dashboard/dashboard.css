@@ -1,0 +1,373 @@
+.cabecalho {
+    z-index: 5;
+    position: fixed;
+    /* position: relative; */
+    top: 0;
+}
+
+/* odeio fazer esse btn */
+
+.cabecalho__menu {
+    /* width: 90%; */
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    top: 76px;
+    right: 3%;
+    gap: 1rem;
+    z-index: 2;
+}
+
+#btnhowMenu {
+    padding: .5rem;
+    border-radius: 5px;
+}
+
+.abrir {
+    animation: showMenu 1s;
+}
+
+
+@keyframes showMenu {
+    0% {
+        opacity: 0;
+        transform: translateX(+100%);
+
+
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0%);
+
+    }
+}
+
+/* Botao auxiliar para fechar */
+.hidden {
+    display: none;
+}
+
+.fechar {
+    animation: hiddenMenu 1s;
+}
+
+@keyframes hiddenMenu {
+
+    0% {
+        opacity: 1;
+        transform: translateX(0%);
+        /* top: 85px; */
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(100%);
+        /* top: -190px; */
+
+    }
+
+}
+
+#btnFecharMenu {
+    display: none;
+}
+
+.all {
+    background-color: var(--grey6);
+}
+
+.all_a {
+    color: var(--dark-gray);
+
+}
+
+.cabecalho__menu nav {
+    border-bottom: 1px solid var(--gray4);
+
+}
+
+.cabecalho__menu nav ul {
+    background: gray;
+
+
+}
+
+.cabecalho__menu nav ul li {
+    background-color: var(--whiteFixed);
+    margin-bottom: .5rem;
+    padding: .5rem;
+    border-radius: 5px;
+}
+
+.cabecalho__menu nav ul li .btns_singUp {
+    padding: .4rem;
+    width: 100%;
+
+}
+
+.cabecalho__menu nav ul li a {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--grey1);
+    transition: .3s;
+}
+
+.cabecalho__menu_hamburgue {
+    cursor: pointer;
+
+}
+
+
+/* Menu*/
+
+.logo_desk {
+    display: none;
+}
+
+.main_container {
+    gap: 1rem;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 4.3rem auto;
+
+}
+
+
+/* ===  Cadastrar Empresa */
+.criarEmpresa {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+
+
+
+
+}
+
+
+.form_CadastrarEmpresa {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border: solid 1px var(--brand-2);
+    max-width: 480px;
+    border-radius: 10px;
+
+
+
+}
+
+.form_CadastrarEmpresa>div {
+    display: flex;
+    margin-top: 10px;
+    justify-content: center;
+
+}
+
+.form_CadastrarEmpresa>div>.btn-geral {
+    padding: .5rem;
+    color: var(--colortext);
+
+}
+
+.form_CadastrarEmpresa>h3 {
+    margin-bottom: 10px;
+
+
+}
+
+.form_CadastrarEmpresa input {
+    margin-bottom: 10px;
+    padding: .5rem;
+}
+
+.select_departamento {}
+
+.select_departamento option {}
+
+/* ======== Estilo container Listar Empresas */
+
+.container__empresas {
+    width: 90%;
+    margin: 0 auto;
+    color: #fff;
+    height: auto;
+}
+
+.container__empresas .renderEmpresas {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    
+    background: url(https://api.lorem.space/image/furniture?w=260&h=150) center;
+
+
+
+}
+
+/* tamnho da li */
+.container__empresas .renderEmpresas .bx-wrapper {
+    width: 100%;
+    background: url(https://api.lorem.space/image/furniture?w=260&h=150) center;
+    border: 5px solid var(--grey2);
+    height: auto;
+    overflow: none;
+    border-radius: 5px;
+
+
+}
+
+.bx-wrapper .bx-controls-direction a {
+    z-index: 1;
+}
+
+.bx-next {}
+
+.bx-prev {
+    left: -45px;
+}
+
+.bx-wrapper .bx-controls-direction .bx-next {
+
+    right: -45px;
+}
+
+.bx-wrapper .bx-controls-direction .bx-prev {
+    left: -45px;
+}
+
+.bx-viewport {
+    overflow: none;
+}
+
+.renderEmpresas .renderEmpresa__li {
+    background: linear-gradient(var(--grey-opacidade), var(--grey-opacidade));
+    min-width: 300px;
+   
+}
+
+.container__empresas .renderEmpresas .renderEmpresa__li .box_content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+
+}
+
+.box_imgDender img {
+    width: 80px;
+}
+
+.box_content>div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.box_content>h3 {}
+
+
+.box_content>span {}
+
+.box_content p {
+   
+}
+
+.box_content select {
+    padding: .5rem;
+}
+
+.box_content select option {}
+
+.box_btns {
+    text-align: center;
+    margin-bottom: 16px;
+    
+    /* background-color:var(--grey2); */
+}
+
+.box_btns>.btn-geral {
+    width: 20%;
+    padding: .4rem;
+
+}
+
+/* ========== Estilo renderizar departamentos  e funcionarios ============ */
+
+.renderGeral {
+    padding: .5rem;
+
+}
+
+.renderGeral>h2 {
+    text-align: center;
+    padding: 16px 0;
+}
+
+.renderGeral .ul__render_dep {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+
+}
+
+.renderGeral .ul__render_dep li {
+
+    /* display: flex;
+    flex-direction: column;
+    gap: 1rem; 
+     class="btn-geral"
+    */
+}
+
+.renderGeral .ul__render_dep li .box_content_infoDep {
+    color: var(--colortext);
+    gap: .5rem;
+    display: flex;
+    flex-direction: column;
+    padding: .5rem;
+    border: solid rgb(251, 134, 0) 1px;
+    background-color: var(--whiteFixed);
+
+    border-radius: 5px;
+
+}
+
+.ul__render_dep .btn-geral {
+    padding: 5px;
+    /* width: 20%; */
+}
+
+.box_content_infoDep {}
+
+.box_content_infoDep>h3 {}
+
+.box_content_infoDep p {}
+
+.box_content_infoDep>span {}
+
+
+/* carrosel */
+
+
+
+
+@media screen and (min-width: 480px) {
+    .logo_mibile {
+        display: none;
+    }
+
+    .logo_desk {
+        display: block;
+    }
+    .renderEmpresas .renderEmpresa__li {
+        background: linear-gradient(var(--grey-opacidade), var(--grey-opacidade));
+        min-width: 460px;
+       
+    }
+
+}

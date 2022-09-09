@@ -163,12 +163,12 @@ body {}
 
 .services .box-container h3{
     font-size: 1.2rem;
-    color: #333;
+    color: var(--colortext);
 }
 
 .services .box-container p{
     font-size: 1rem;
-    color: #666;
+    color: var(--colortext);
     padding: 1rem 0;
 }
 
@@ -198,6 +198,11 @@ body {}
 
 .boxEmpresas nav ul li{
     color: var(--whiteFixed);
+
+}
+.boxEmpresas nav ul li p{
+    /* color: var(--whiteFixed); */
+    color: #fff;
 
 }
 

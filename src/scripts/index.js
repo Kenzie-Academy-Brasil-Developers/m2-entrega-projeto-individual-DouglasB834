@@ -33,6 +33,7 @@ export class Index{
             },1000)
         })
     }
+    
     static ShowSingup(){
         const btnLogin = document.querySelector(".btnSingup")
 
@@ -111,8 +112,7 @@ class listarEmpresas{
         const tagUl  = document.querySelector(".box-container")
 
         companies.addEventListener("click", async event =>{
-            console.log(event.target.tagName)
-              
+            console.log(event.target.tagName)              
             tagUl.innerHTML = ""
             if(event.target.tagName =="LI"){
 
@@ -123,8 +123,7 @@ class listarEmpresas{
                         tagUl.append(listarEmpresas.criarEmpresa(element))
                        
                     })
-                }              
-                console.log(event.target.className)
+                }  
                 const empresas = await Requests.listarCompany(event.target.className)
                 empresas.forEach(async  element =>{
                     tagUl.append(listarEmpresas.criarEmpresa(element))
@@ -137,19 +136,27 @@ class listarEmpresas{
     }
 
     static  criarEmpresa(empresa){
-     
+
+        console.log(empresa.sectors.description)
         const li    = document.createElement("li")
         li.classList.add("box")
 
+        const img    = document.createElement("img")
         const h3    = document.createElement("h3")
         const p     = document.createElement("p")
         const span  = document.createElement("span")  
-
+        if(empresa.sectors.description == "Alimenticio"){
+            img.src             = `https://api.lorem.space/image/pizza?w=150&h=150`
+        }else if (empresa.sectors.description == "Automotiva"){
+            img.src             = `https://api.lorem.space/image/car?w=150&h=150`
+        }else{
+            img.src             = `https://api.lorem.space/image/watch?w=150&h=150`
+        }
         h3.innerText        = empresa.name
         p.innerText         = empresa.opening_hours
-        span.innerText      = empresa.sectors.description
+        span.innerText      = empresa.description
 
-        li.append(h3 , p, span)
+        li.append(img, h3, p, span)
         return li
     }
 }
