@@ -1,0 +1,212 @@
+body {}
+
+.cabecalho {
+    width: 100%;
+    background-color: var(--grey1);
+    height: 75px;
+
+}
+.cabecalho{
+    position: fixed;
+    top: 0;
+}
+
+
+.cabecalho__container {   
+    width: 100%;
+    max-width: 90%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+
+}
+
+.cabecalho__container-logo  > h2{
+    color: var(--whiteFixed);
+ 
+}
+
+.cabecalho>.cabecalho__container-logo img {
+  
+}
+.fa-fire{
+    color: var(--grey3);
+
+}
+.cabecalho__btns{
+    display: flex;
+    margin-left: 10px;
+}
+.cabecalho__btns>.cabecalho_btns_login{
+    width: 53px;
+    height: 32px;
+    cursor: pointer;
+    font-weight: 400;
+    border-radius: 5px;
+    font-size: var(--text2);
+ 
+    color: var(--whiteFixed);
+    background-color:var(--grey1);
+}
+.cabecalho_btns_login:focus{
+    color: var(--grey2);
+    background-color: var(--grey4);
+}
+.cabecalho_btns_singUp:focus{
+    color: var(--grey2);
+    background-color: var(--grey4);
+}
+
+.cabecalho_btns_singUp {
+    width: 71px;
+    height: 32px;
+    border: none;
+    color: var(--whiteFixed);
+    background-color: var(--grey1);
+}
+
+
+
+.container {   
+    gap: 2rem;
+    width: 70%;
+    height: auto;
+    display: flex;
+    padding: 1rem;
+    max-width: 900px;
+    margin: 5.5rem auto;
+    border-radius: 5px;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--grey4);
+    border: solid var(--whiteFixed);
+ 
+
+}
+
+.container > div >.boxImg {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.container>h1 {
+    font-size: 4rem;
+    text-align: center;
+    color: var(--grey1);
+    border-bottom: 1px solid;
+    font-size: var(--title1);
+}
+
+.container>p {
+    width: 80%;
+    text-align: center;
+}
+
+.container>.box__btns>.main__btn {
+    padding: .6rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--grey1);
+    color: var(--whiteFixed);
+    margin-bottom: 1rem;
+    border: none;
+}
+
+.container>.box__btns>.main__btn_variavel {
+    background: var(--grey2);
+}
+
+.container>.box__btns>.main__btn:hover {
+    background-color: var(--grey2);
+}
+
+.container>.box__btns>.main__btn_cadastra:hover {
+    background-color: var(--grey3);
+}
+
+
+/* Empresa Parceiras  */
+.services{
+    margin-bottom: 2rem;
+}
+
+.services .box-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 1.5rem;
+   
+}
+
+.services .box-container .box{
+    margin: 0 auto;
+    /* flex: 1 1 30rem; */
+    padding: 2rem;
+    text-align: center;
+    width: 300px;
+    border-radius: 0.5rem;
+    background-color: var(--grey3);
+}
+
+.services .box-container .box:hover{
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, .2);
+}
+
+.services .box-container .box i{
+    padding: 1rem ;
+    font-size: 5rem;
+    color: var(--grey3);
+}
+
+.services .box-container h3{
+    font-size: 1.2rem;
+    color: var(--colortext);
+}
+
+.services .box-container p{
+    font-size: 1rem;
+    color: var(--colortext);
+    padding: 1rem 0;
+}
+
+
+/* ============== Listar empresas =================  */
+
+.boxEmpresas{
+    width: 100%;
+}
+.boxEmpresas nav {
+   
+}
+
+.boxEmpresas nav  ul{
+    padding: .2rem;
+    gap: 1.5rem;
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--grey1);
+    cursor: pointer;
+    transition: .3s linear;
+    flex-wrap: wrap;
+}
+
+.boxEmpresas nav ul li{
+    color: var(--whiteFixed);
+
+}
+.boxEmpresas nav ul li p{
+    /* color: var(--whiteFixed); */
+    color: #fff;
+
+}
+
+.boxEmpresas nav ul li:hover{
+    color: var(--grey3);
+
+}

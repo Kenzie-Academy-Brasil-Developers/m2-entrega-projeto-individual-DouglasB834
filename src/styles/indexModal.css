@@ -1,0 +1,144 @@
+
+/* ======== modal ============ */
+
+.container__modal {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: showLoginModal 1s;
+    background-color: var(--bg-modal);
+}
+
+.modal {
+    width: 90%;
+    max-width: 380px;
+    height: auto;
+    border-radius: 5px;
+    background-color: var(--whiteFixed);
+    padding: 1rem;
+   
+}
+
+
+
+.modal-disappear{
+    animation: closeLoginModal 1.5s;
+}
+
+@keyframes showLoginModal {
+    0% {
+        opacity: 0;
+        transform:  translate(-30%, -30%);
+    }
+
+    100% {
+        opacity: 1;
+        transform:  translate( 0, 0);
+    }
+
+}
+@keyframes closeLoginModal {
+    0% {
+        opacity: 1;
+        transform:  translate( 0, 0);
+    }
+
+    100% {
+        opacity: 0;
+        transform:  translate(-30%, -30%);
+    }
+
+}
+
+
+
+
+
+
+.container__modal>.modal>.form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 600px;
+    justify-content: center;
+    gap: 1rem;
+}
+.container__modal>.modal>.form input ,button{
+    width: 90%;
+    padding: .6rem;
+    border-radius: 2px;
+    outline: none;
+    border: 1px solid var(--grey4);
+    cursor: pointer;
+    
+}
+.container__modal>.modal>.form >button {
+    width: 98%;
+    
+    background-color: var(--brand-1);
+    color: var(--whiteFixed);
+
+}
+.container__modal>.modal>.form >button:hover{
+    background-color: var(--grey2);
+    color: var(--whiteFixed);
+}
+.voltarLogin{
+    border: solid 1px ;
+    padding: .4rem;
+    width: 98%;
+    cursor: pointer;
+}
+
+
+.voltarLogin:active{
+    background-color: var(--grey3);
+    color: var(--whiteFixed);
+}
+.closeModal{
+    cursor: pointer;
+}
+.container__modal>.modal>h2 {
+    margin-bottom: 1rem;
+    font-size: var(--title1);
+}
+
+.container__modal > .modal >p{
+    font-size: var(--text2);
+    margin: 1rem 0;
+    text-align: center;
+}
+.container__modal > .modal > button {
+    width: 98%;
+    background-color: var(--whiteFixed);
+    color: var(--grey1)
+    
+}
+.container__modal > .modal > button:active{
+    background-color: var(--grey3);
+    color: var(--whiteFixed);
+}
+
+.modal >div {
+    display: flex;
+    margin: 1rem 0;
+    justify-content: space-between;
+    align-items: center;
+}
+.modal >div >h2 {
+    font-size: var(--title1);
+    font-weight: 700;
+    color: var(--grey1);
+}
+.modal >div span{
+    font-size: var(--text2);
+    font-weight: 600;
+    color: var(--grey1);
+    border: 1px solid var(--grey1);
+    padding: 4px 10px;
+
+}
