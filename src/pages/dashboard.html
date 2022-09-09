@@ -7,15 +7,21 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Site de rede social Entrega s6 19">
-        <link rel="shortcut icon" href="src/assets/doug.ico" type="image/x-icon">
+        <meta name="description" content="EMpresa ERP ">
+        <link rel="shortcut icon" href="../assets/logoself.png" type="image/x-icon">
         <!-- Link google Ftons  -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
+        <!-- Config   Fonte do  Slide Jquery  -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 
         <!-- Tost css -->
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
         <!-- tost JS -->
         <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
@@ -41,34 +47,254 @@
         <div class="cabecalho__container">
 
             <div class="cabecalho__container-logo">
-                <h2> <i class="fa-sharp fa-solid fa-fire"></i>Make YSelf</h2>
+                <h2 class="logo_mibile"> <i class="fa-sharp fa-solid fa-fire"></i> mYSelf</h2>
+                <h2 class="logo_desk"> <i class="fa-sharp fa-solid fa-fire"></i> Make YSelf</h2>
             </div>
-            
+
             <div class="darkMode">
                 <i class="fa fa-moon-o" aria-hidden="true"></i>
                 <i class="fa-solid fa-sun"></i>
             </div>
-            <button class="btns_singUp sair">Sair</button>
+
+            <div class="cabecalho__menu hidden">
+                <nav>
+                    <ul>
+                        <li class="all">
+                            <a class="all_a" href="#">All</a>
+                        </li>
+                        <li>
+                            <a  class="btnCdastrarComp" href="#">Cadastrar Empresa</a>
+                        </li>
+                        <li>
+                            <a href="#">Listar Funcionarios</a>
+                        </li>                       
+                        <li>                            
+                             <button class="btns_singUp sair">Sair</button>
+                        </li>
+                    </ul>
+                </nav>             
+
+            </div>
+
+            <div class="cabecalho__menu_hamburgue">
+               
+                <button id="btnhowMenu">menu</button>
+                <!-- <i id="btnhowMenu" class="fa-solid fa-bars"></i> -->
+                <i id="btnFecharMenu" class="fa-solid fa-xmark"></i>
+
+            </div>
         </div>
     </header>
+        
+ <!--  cadastrar empresa -->
+ <!-- <section class="container__modal">  
 
-    <main class="container">
-        <!--  cadastrar empresa -->
-        <section class="criarEmpresa">
-            <form>
-                
-            </form>
+    <div class="baseModal">
 
-        </section>
+        <form class="form_CadastrarEmpresa">
+            <h3>Cadastrar empresa</h3>
+            <input type="text" class="nameCompany" placeholder="Nome da empresa" required>
+            
+            <input type="time" class="openingHours" placeholder="Horario de abertura">
+            
+            <input type="text" class="description" placeholder="Descrição da Empresa">
+            
+            <select class="select_departamento" name="" id="departamento">
+            <option selected disabled value="" > Selecione setor</option>
+            <option value="cbb5b34a-6f5e-4eb2-8d1c-ad20993710f2">Alimenticio</option>
+            <option value="99a0282f-ead0-42d5-bda2-5f3b9e373b4b">Varejo</option>
+            <option value="164a2dbf-87ab-4109-be30-73165a717e04">Textil</option>
+            <option value="047f6741-39e9-47eb-bee4-b236f8df18ee">Aero Espacial</option>
+            <option value="e76cc30a-96eb-45c2-93b2-a15ef7aab2b2">Automotiva</option>
+            <option value="17247c6b-5205-4067-9695-278fcb97d592">tecnologia TI</option>
+            <option value="ee99c41f-14bc-47e3-891b-9ccd9c799d1a">Atacado</option>
+            
+        </select>
+        
+        <div>
+            <button class="btnRegisterCompany btn-geral">Cadastrar Empresa</button>
+        </div>
+        
+    </form>
+</div>         
+
+</section> -->
+
+    <main class="main_container">
         <!-- empresasa -->
         <section class="container__empresas">
-                        
+           
+            <h2 class="title">
+                <span>Empresas</span>
+              </h2>
+
+            <ul class="renderEmpresas">
+                <!-- slid com Jquery  -->
+                <!--  <div class="ap" id="slider"> 
+                                    
+                   <li class="renderEmpresa__li">
+                       
+                        <div class="box_content">
+                            
+                            <div class="box_imgDender">
+                                <img src="../assets/logo2self.png" alt="">
+                            </div>
+
+
+                            <div>
+                                <h3>Name da empresa</h3>
+                                <span>Horario de funcionamento: </span>
+                                <p>descrição Lorem ipsum dolor sit amet</p>
+                                <select class="renderDepartament">
+                                  
+                                    <option value="">Dep:todos</option>        
+                                </select>
+                            </div>
+
+                        </div>
+    
+                        <div class="box_btns">
+                            <button class="btnLisar btn-geral">funcionarios</button>
+                        </div>
+    
+                    </li>
+                    <li class="renderEmpresa__li">
+                       
+                        <div class="box_content">
+                            
+                            <div class="box_imgDender">
+                                <img src="../assets/logo2self.png" alt="">
+                            </div>
+
+
+                            <div>
+                                <h3>Name da empresa</h3>
+                                <span>Horario de funcionamento: </span>
+                                <p>descrição Lorem ipsum dolor sit amet</p>
+                                <select class="renderDepartament">
+                                  
+                                    <option value="">Dep:todos</option>        
+                                </select>
+                            </div>
+
+                        </div>
+    
+                        <div class="box_btns">
+                            <button class="btnLisar btn-geral">funcionarios</button>
+                        </div>
+    
+                    </li>
+                    <li class="renderEmpresa__li">
+                       
+                        <div class="box_content">
+                            
+                            <div class="box_imgDender">
+                                <img src="../assets/logo2self.png" alt="">
+                            </div>
+
+
+                            <div>
+                                <h3>Name da empresa</h3>
+                                <span>Horario de funcionamento: </span>
+                                <p>descrição Lorem ipsum dolor sit amet</p>
+                                <select class="renderDepartament">
+                                  
+                                    <option value="">Dep:todos</option>        
+                                </select>
+                            </div>
+
+                        </div>
+    
+                        <div class="box_btns">
+                            <button class="btnLisar btn-geral">funcionarios</button>
+                        </div>
+    
+                    </li>
+                  
+                     
+
+                </div> -->
+            </ul>
+
+        </section>
+        
+
+        <!-- DEPARTAMTOS E FUNCIONARIOS -->
+        <section class="renderGeral">
+            
+            <h2>Departamentos</h2>
+
+            <ul class="ul__render_dep">
+                <li>
+                    <div class="box_content_infoDep">
+                        <h3>nome: ti</h3>
+                        <p>description: departamento TI</p>
+                        <p>Empresa</p>
+                        <span>Horario funcionamento: 09:00</span>
+                        <div class="box_btns">
+                            <button class="btnLisar btn-geral">funcionarios</button>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="box_content_infoDep">
+                        <h3>nome: RH</h3>
+                        <p>description:"Recrutamento e seleção"</p>
+                        <p>Empresa</p>
+                        <span>Horario funcionamento: 09:00</span>
+                        <div class="box_btns">
+                            <button class="btnLisar btn-geral">funcionarios</button>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="box_content_infoDep">
+                        <h3>nome: RH</h3>
+                        <p>description:"Recrutamento e seleção"</p>
+                        <p>Empresa</p>
+                        <span>Horario funcionamento: 09:00</span>
+                        <div class="box_btns">
+                            <button class="btnLisar btn-geral">funcionarios</button>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="box_content_infoDep">
+                        <h3>nome: RH</h3>
+                        <p>description:"Recrutamento e seleção"</p>
+                        <p>Empresa</p>
+                        <span>Horario funcionamento: 09:00</span>
+                        <div class="box_btns">
+                            <button class="btnLisar btn-geral">funcionarios</button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
         </section>
 
 
     </main>
 
-    
+
+
+
+    <footer>
+        douglas Borges
+    </footer>
+ 
+  <!-- Configuração slide JS jquery  FOi o Gui que me ensinou   -->
+            
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
+        <script>
+        
+            $(document).ready(function(){$('#slider').bxSlider();});
+
+        </script>
+
 </body>
 
 </html>

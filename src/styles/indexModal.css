@@ -5,8 +5,7 @@
     position: fixed;
     top: 0;
     width: 100%;
-    height: 100%;
-    
+    height: 100%;    
     display: flex;
     align-items: center;
     justify-content: center;
@@ -23,6 +22,42 @@
     padding: 1rem;
    
 }
+
+
+
+.modal-disappear{
+    animation: closeLoginModal 1.5s;
+}
+
+@keyframes showLoginModal {
+    0% {
+        opacity: 0;
+        transform:  translate(-30%, -30%);
+    }
+
+    100% {
+        opacity: 1;
+        transform:  translate( 0, 0);
+    }
+
+}
+@keyframes closeLoginModal {
+    0% {
+        opacity: 1;
+        transform:  translate( 0, 0);
+    }
+
+    100% {
+        opacity: 0;
+        transform:  translate(-30%, -30%);
+    }
+
+}
+
+
+
+
+
 
 .container__modal>.modal>.form {
     display: flex;
@@ -86,36 +121,6 @@
 .container__modal > .modal > button:active{
     background-color: var(--grey3);
     color: var(--whiteFixed);
-}
-
-
-.modal-disappear{
-    animation: closeLoginModal 1.5s;
-}
-
-@keyframes showLoginModal {
-    0% {
-        opacity: 0;
-        transform:  translate(-30%, -30%);
-    }
-
-    100% {
-        opacity: 1;
-        transform:  translate( 0, 0);
-    }
-
-}
-@keyframes closeLoginModal {
-    0% {
-        opacity: 1;
-        transform:  translate( 0, 0);
-    }
-
-    100% {
-        opacity: 0;
-        transform:  translate(-30%, -30%);
-    }
-
 }
 
 .modal >div {
