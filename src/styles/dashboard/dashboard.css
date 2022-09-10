@@ -269,47 +269,26 @@
 
 .criarDepartamento{
     display: flex;
-    flex-direction: column;
-    /* flex-wrap: wrap; */
     text-align: center;
+    flex-direction: column;
     margin-top: .5rem;
-    color: var(--grey1);
-    position: absolute;
-    left:18% ; 
-    animation: criat 1s;
-    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
 }
-.tirar{
-    animation: sair 1s;
-}
-@Keyframes criat{
-    0%{
-        left: -60%;
-
-    }
-    100%{
-        left: 18%;
-    }
-    
-}
-@Keyframes sair{
-    0%{
-        left: 10%;
-
-    }
-    100%{
-        left: -100%;
-    }
-    
-}
+   
 
 
-/* .criarDepartamento > h3{
-    padding: .5rem;
+.criarDepartamento .boxForm> h3{
+  
 }
 
 .criarDepartamento .boxForm {
     width: 160px;
+    margin: 0 auto;
+    display: flex;
+    gap: .5rem;
+    flex-direction: column;
     
 }
 
@@ -318,12 +297,11 @@
     max-width: 100%;
 }
 
-.criarDepartamento  .btn-geral{
+.criarDepartamento > .btn-geral{
   height: 20px;
   width: 83%;
-  max-width: 76%;
     
-} */
+}
 
 
 /* ========== Estilo renderizar departamentos  e funcionarios ============ */
