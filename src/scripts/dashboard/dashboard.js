@@ -161,8 +161,12 @@ class index{
             
         })
         btnCriarDep.addEventListener("click", ()=>{
-            const renderEmpresas = document.querySelector(".renderEmpresas")
-            this.criarDep(company)
+            const body  = document.querySelector("body")
+            const renderCadastrar = this.criarDep(company)
+           if(renderCadastrar.classList.contains("container__modal")){
+                renderCadastrar.classList.toggle()
+           }
+            body.append(renderCadastrar)
         })
         
 
@@ -175,25 +179,35 @@ class index{
         return tagLI
         
     }
+
     static criarDep(id){
 
+        const tagDiv        = document.createElement("div")
         const tagPai        = document.createElement("div")
         const tagForm       = document.createElement("form")
         const tagH3         = document.createElement("h3")
         const tagInputDep   = document.createElement("input")
         const tagInoutDesc  = document.createElement("input")
+        const btnEnviar     = document.createElement("buttton")
 
-        tagPai.classList.add("criarDepartamento")
+        tagDiv.classList.add("container__modal")
+        tagDiv.classList.add("criarDepartamento")
+        tagPai.classList.add("baseModal")
         tagForm.classList.add("boxForm")
-
+        btnEnviar.classList.add("btn-geral")
+        
+        btnEnviar.innerText         = "Registrar"
         tagH3.innerText             = "Criar departamento"
         tagInputDep.placeholder     = "criar novo departamento"
         tagInoutDesc.placeholder    = "Descrição do departamento"
 
-        tagForm.append( tagInputDep,tagInoutDesc)
-        tagPai.append(tagH3,tagForm)
-        console.log(id.uuid)
-        return tagPai
+        tagForm.append(tagH3, tagInputDep,tagInoutDesc, btnEnviar)
+
+        tagPai.append(tagForm,)
+
+        tagDiv.append(tagPai)
+        
+        return tagDiv
     }
 
     static async listDep(){
@@ -228,7 +242,7 @@ class index{
 
         tagDivInfo.classList.add("box_content_infoDep")
         boxBtn.classList.add("box_btns")
-        btnListarF.classList.add("btnLisar","btn-geral")
+        btnListarF.classList.add("btnLisar","rbtn-geral")
 
         //alimentando ob
         btnListarF.innerText    = "Editar de partamento.."
