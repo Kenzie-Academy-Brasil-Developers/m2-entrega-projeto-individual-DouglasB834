@@ -13,7 +13,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    
+
         <!-- Config   Fonte do  Slide Jquery  -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -63,21 +63,21 @@
                             <a class="all_a" href="#">All</a>
                         </li>
                         <li>
-                            <a  class="btnCdastrarComp" href="#">Cadastrar Empresa</a>
+                            <a class="btnCdastrarComp" href="#">Cadastrar Empresa</a>
                         </li>
                         <li>
                             <a href="#">Listar Funcionarios</a>
-                        </li>                       
-                        <li>                            
-                             <button class="btns_singUp sair">Sair</button>
+                        </li>
+                        <li>
+                            <button class="btns_singUp sair">Sair</button>
                         </li>
                     </ul>
-                </nav>             
+                </nav>
 
             </div>
 
             <div class="cabecalho__menu_hamburgue">
-               
+
                 <button id="btnhowMenu">menu</button>
                 <!-- <i id="btnhowMenu" class="fa-solid fa-bars"></i> -->
                 <i id="btnFecharMenu" class="fa-solid fa-xmark"></i>
@@ -85,9 +85,9 @@
             </div>
         </div>
     </header>
-        
- <!--  cadastrar empresa -->
- <!-- <section class="container__modal">  
+
+    <!--  cadastrar empresa -->
+    <!-- <section class="container__modal">  
 
     <div class="baseModal">
 
@@ -123,12 +123,13 @@
     <main class="main_container">
         <!-- empresasa -->
         <section class="container__empresas">
-           
+
             <h2 class="title">
                 <span>Empresas</span>
-              </h2>
+            </h2>
 
             <ul class="renderEmpresas">
+
                 <!-- slid com Jquery  -->
                 <!--  <div class="ap" id="slider"> 
                                     
@@ -216,20 +217,36 @@
                 </div> -->
             </ul>
 
+         
         </section>
-        
+
 
         <!-- DEPARTAMTOS E FUNCIONARIOS -->
-        <section class="renderGeral">            
+        <section class="renderGeral">
             <h2>Departamentos</h2>
+            <div class="box_btns">
+                <div class="box_btns">
+                    <button class="btnListGeral2 btn-geral">Listar todos Dep</button>
+                </div>
+                <ul class="ul__render_dep">
 
-            <ul class="ul__render_dep">
-                <li>
+
+
+                    <!-- <li>
+                    {
+  "name": "Ensino",
+  "description": "Equipe responsável para ensinar os alunos",
+  "company_uuid": "76319b59-e26a-4b96-9715-98f38d6dba57"
+}
+
+
                     <div class="box_content_infoDep">
+                        
                         <h3>nome: ti</h3>
                         <p>description: departamento TI</p>
                         <p>Empresa</p>
                         <span>Horario funcionamento: 09:00</span>
+
                         <div class="box_btns">
                             <button class="btnLisar btn-geral">funcionarios</button>
                         </div>
@@ -270,29 +287,52 @@
                             <button class="btnLisar btn-geral">funcionarios</button>
                         </div>
                     </div>
-                </li>
-            </ul>
+                </li> -->
+                </ul>
 
         </section>
 
 
     </main>
+    <!-- <div class="container__modal ">
+        <div class="baseModal">
+            <form class="formEditar">
 
+                <i class="btnClose">x</i>
+
+                <textarea class="texto" cols="10" rows="5"></textarea>
+                <button class="btn-geral btnAtualizar">enviar atualização</button>
+            </form>
+        </div>
+        
+    </div> -->
+    <!-- <div class="container__modal">
+        <div class="baseModal">
+
+            <form class="boxForm">
+                <h3>Criar departamento</h3>
+                <input type="text" placeholder="Criar novo Departamento">
+                <input type="text" placeholder="Descrição do departamento">
+
+            </form>
+            <button class="btn-geral">Registar</button>
+        </div>
+    </div> -->
 
 
 
     <footer>
         douglas Borges
     </footer>
- 
-  <!-- Configuração slide JS jquery  FOi o Gui que me ensinou   -->
-            
-        <script src="https://smtpjs.com/v3/smtp.js"></script>
-        <script>
-        
-            $(document).ready(function(){$('#slider').bxSlider();});
 
-        </script>
+    <!-- Configuração slide JS jquery  FOi o Gui que me ensinou   -->
+
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script>
+
+        $(document).ready(function () { $('#slider').bxSlider(); });
+
+    </script>
 
 </body>
 

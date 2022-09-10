@@ -82,86 +82,233 @@ class index{
                 description:    description.value,
                 sector_uuid:    select.options[select.selectedIndex].value
             }
-            console.log(data)
             Requests.registerCompany(data)
         })
 
     }
+
     static async listcompany(){
-        const slider = document.querySelector(".ap")
+        // const slider = document.querySelector(".ap")
         const tagUl = document.querySelector(".renderEmpresas")
         const empresas = await Requests.listartodasEmpresas()
         empresas.forEach( async element => {
-            tagUl.append( this.criarEmpresa(element))
+            tagUl.append( this.renderEmpresa(element))
             
            
         });
+        index.listDep()
         
     }
 
-    static criarEmpresa(company){
+    static renderEmpresa(company){
+     
         const tagLI             = document.createElement("li")
 
         const tagDivMain        = document.createElement("div")
-
-        // const tagDivBoximg      = document.createElement("div")
-        // const tagImg            = document.createElement("img")
 
         const tagDivinfo        = document.createElement("div")
         const tagH3             = document.createElement("h3")
         const tagSpan           = document.createElement("span")
         const tagP              = document.createElement("p")
         const tagSelect         = document.createElement("select")
-        const tagTodosOsDep     = document.createElement("option")
+        
         const tagboxBtn         = document.createElement("div")
         const btnFuncionarios   = document.createElement("buttton")
-        const btnlistDepartament   = document.createElement("buttton")
-        
+        const btnCriarDep   = document.createElement("buttton")
+      
+     
 
         tagLI.classList.add("renderEmpresa__li")
         tagDivMain.classList.add("box_content")
-        // tagDivBoximg.classList.add("box_imgDender")
         tagSelect.classList.add("renderDepartament")
         
-        btnFuncionarios.classList.add("btnListGeral")
-        btnFuncionarios.classList.add("btn-geral")
+        // btnFuncionarios.classList.add("btnListGeral")
+        // btnFuncionarios.classList.add("btn-geral")
         tagboxBtn.classList.add("box_btns")
-        btnlistDepartament.classList.add("btn-geral")
-        
-
-
-        
+        btnCriarDep.classList.add("btn-geral")
+        btnCriarDep.classList.add("btnListGeral")
+  
         tagH3.innerText         = company.name
         tagSpan.innerText       = company.opening_hours
         tagP.innerText          = company.description
-        tagTodosOsDep.value     = company.uuid 
-        tagTodosOsDep.innerText = "List todos :dep"
-        // tagImg.src              = "../assets/logo2self.png"
+        tagSelect.id            = company.uuid 
         
-        btnFuncionarios.innerText = "List employees"
-        btnlistDepartament.innerText = "list Dep"
+        // btnFuncionarios.innerText = "list all Dep"
+        btnCriarDep.innerText = "Criar Dep"
+
+        const tagTodosOsDep     = document.createElement("option")
+       
+        tagTodosOsDep.innerText = "List todos :dep"
+        tagSelect.append(tagTodosOsDep)
+
+
+        tagSelect.addEventListener("click", async (event)=>{
+            const departamento = await Requests.listOneDep(event.target.id)
+           
+            if(departamento.length){                
+                tagSelect.innerText = ""
+                departamento.forEach(element =>{    
+                    const optionDep     = document.createElement("option")
+                    optionDep.innerText = element.name
+                    optionDep.value     = element.uuid
+                    tagSelect.append(optionDep)  
+    
+                   
+                })
+            }else{
+                tagTodosOsDep.innerText = "Sem departamento"
+            }
+            
+        })
+        btnCriarDep.addEventListener("click", ()=>{
+            const renderEmpresas = document.querySelector(".renderEmpresas")
+            this.criarDep(company)
+        })
         
 
-        
-        
-        // tagDivBoximg.append(tagImg)    
-        tagSelect.append(tagTodosOsDep)
         tagDivinfo.append(tagH3, tagSpan, tagP)
-        tagboxBtn.append(btnFuncionarios)
+        tagboxBtn.append(btnCriarDep)
 
         tagDivMain.append(tagDivinfo, tagSelect)
         tagLI.append(tagDivMain, tagboxBtn)
        
         return tagLI
+        
+    }
+    static criarDep(id){
+
+        const tagPai        = document.createElement("div")
+        const tagForm       = document.createElement("form")
+        const tagH3         = document.createElement("h3")
+        const tagInputDep   = document.createElement("input")
+        const tagInoutDesc  = document.createElement("input")
+
+        tagPai.classList.add("criarDepartamento")
+        tagForm.classList.add("boxForm")
+
+        tagH3.innerText             = "Criar departamento"
+        tagInputDep.placeholder     = "criar novo departamento"
+        tagInoutDesc.placeholder    = "Descrição do departamento"
+
+        tagForm.append( tagInputDep,tagInoutDesc)
+        tagPai.append(tagH3,tagForm)
+        console.log(id.uuid)
+        return tagPai
     }
 
-    
+    static async listDep(){
+        const tagUlDep = document.querySelector(".ul__render_dep")
+        const btnListGeral = document.querySelector(".btnListGeral2") 
+          
+        btnListGeral.addEventListener("click", async ()=>{           
+            tagUlDep.innerText = ""
+            const departament = await Requests.listAllDep()
+            
+            departament.forEach( element =>{
+                const listaDep = this.renderDep(element)
+                tagUlDep.append(listaDep)
+            })
+            
+        })
+       
+    }
+
+    static  renderDep(dep){
+       
+        const tagLi             = document.createElement("li")
+        const tagDivInfo        = document.createElement("div")
+
+        const tagH3             = document.createElement("h3")
+        const tagPDesc          = document.createElement("p")
+        const tagPEmpresa       = document.createElement("p")
+        const tagSpanTime       = document.createElement("span")
+
+        const boxBtn            = document.createElement("div")
+        const btnListarF        = document.createElement("button")
+
+        tagDivInfo.classList.add("box_content_infoDep")
+        boxBtn.classList.add("box_btns")
+        btnListarF.classList.add("btnLisar","btn-geral")
+
+        //alimentando ob
+        btnListarF.innerText    = "Editar de partamento.."
+        tagH3.innerText         = dep.name
+        tagPDesc.innerText      = dep.description
+        tagPEmpresa.innerText   = dep.companies.name
+        tagSpanTime.innerText   = dep.companies.opening_hours
+
+        btnListarF.addEventListener("click" ,() => {
+           
+            this.atualizarDep(dep)
+        })
+
+        
+        boxBtn.append(btnListarF)
+        tagDivInfo.append(tagH3, tagPDesc,tagPEmpresa, tagSpanTime, boxBtn )
+        tagLi.append(tagDivInfo)
+        return tagLi
+
+    }
+    static atualizarDep(nome){
+        const body = document.querySelector("body")
+        const container__modal  =document.createElement("div")
+        const baseModal =document.createElement("div")
+        
+        const form =document.createElement("form")
+        const textarea =document.createElement("textarea")
+        const btnAtualizar =document.createElement("buttom")
+        const tagI =document.createElement("i")
+        
+        baseModal.classList.add("baseModal")
+        container__modal.classList.add("container__modal")
+        form.classList.add("formEditar")
+        textarea.classList.add("texto")
+        btnAtualizar.classList.add("btn-geral", "btnAtualizar" )
+        tagI.classList.add("btnClose")
+
+        tagI.innerText  = "X"
+        textarea.cols ="10"
+        textarea.rows ="5"
+        textarea.placeholder = `${nome.description}`
+        btnAtualizar.innerText  = "enviar atualização.."
+      
+        
+        tagI.addEventListener("click", ()=>{
+            container__modal.classList.toggle("modal-disappear")
+           setTimeout(()=>{
+            container__modal.remove()
+           },600)
+
+        })
+        console.log(nome.uuid)
+        // atualizar descrição Dep
+        btnAtualizar.addEventListener("click", () =>{
+            console.log(textarea.value)
+            const objeto ={
+                description: textarea.value
+            }
+            Requests.editDepartamet(objeto, nome.uuid)
+            setTimeout(()=>{
+                location.reload()
+
+            }, 1000)
+        })
 
 
+
+        form.append(tagI, textarea, btnAtualizar)
+        baseModal.append(form)
+        
+        container__modal.append(baseModal)
+        body.append( container__modal)
+
+
+    }
 
 
 
 }
 
+// index.atualizardep()
 index.registerNewCompany()
 index.listcompany()

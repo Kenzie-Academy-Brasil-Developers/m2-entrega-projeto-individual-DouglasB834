@@ -38,7 +38,7 @@ export class Renders{
         tagDescription.classList.add("description")
         
         tagInputCompany.type     = "text"
-        tagTime.type             = "text"
+        tagTime.type             = "time"
         tagDescription.type      = "text"
 
         tagInputCompany.placeholder = "Nome da empresa"
@@ -49,18 +49,19 @@ export class Renders{
         tagDescription.required     = true
 
 
-        const tagSelect     = document.createElement("select")
+        const tagSelect         = document.createElement("select")
 
-        const options       = document.createElement("option")
-        const alimenticio   = document.createElement("option")
-        const varejo        = document.createElement("option")
-        const textil        = document.createElement("option")
-        const aeroEspacial  = document.createElement("option")
-        const automotiva    = document.createElement("option")
-        const tagManuf      = document.createElement("option")
-        const ti            = document.createElement("option")
-        const Atacado       = document.createElement("option")
-
+        const options           = document.createElement("option")
+        const alimenticio       = document.createElement("option")
+        const varejo            = document.createElement("option")
+        const textil            = document.createElement("option")
+        const aeroEspacial      = document.createElement("option")
+        const automotiva        = document.createElement("option")
+        const tagManuf          = document.createElement("option")
+        const ti                = document.createElement("option")
+        const Atacado           = document.createElement("option")
+       
+        
         tagSelect.id            = "addSetor"
         options.innerText       = "Selecione Setor"
         

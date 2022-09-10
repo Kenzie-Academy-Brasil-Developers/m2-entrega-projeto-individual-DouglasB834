@@ -55,7 +55,7 @@ export class Index{
                 email:inputlogin.value,
                 password: inputlPass.value
             }
-          
+            
            Requests.login(data)
         })      
 
@@ -102,7 +102,7 @@ class listarEmpresas{
         const renderEmpresa =  await  Requests.listartodasEmpresas()
               
         renderEmpresa.forEach(async (element) => { 
-            empresas.append(listarEmpresas.criarEmpresa(element))
+            empresas.append(listarEmpresas.renderEmpresa(element))
            
         })
 
@@ -111,8 +111,7 @@ class listarEmpresas{
         const companies = document.querySelector(".companies")
         const tagUl  = document.querySelector(".box-container")
 
-        companies.addEventListener("click", async event =>{
-            console.log(event.target.tagName)              
+        companies.addEventListener("click", async event =>{              
             tagUl.innerHTML = ""
             if(event.target.tagName =="LI"){
 
@@ -120,13 +119,13 @@ class listarEmpresas{
                     const renderEmpresa =  await  Requests.listartodasEmpresas()
               
                     renderEmpresa.forEach(async (element) => { 
-                        tagUl.append(listarEmpresas.criarEmpresa(element))
+                        tagUl.append(listarEmpresas.renderEmpresa(element))
                        
                     })
                 }  
                 const empresas = await Requests.listarCompany(event.target.className)
                 empresas.forEach(async  element =>{
-                    tagUl.append(listarEmpresas.criarEmpresa(element))
+                    tagUl.append(listarEmpresas.renderEmpresa(element))
                 })
             }
         })
@@ -135,9 +134,9 @@ class listarEmpresas{
 
     }
 
-    static  criarEmpresa(empresa){
+    static  renderEmpresa(empresa){
 
-        console.log(empresa.sectors.description)
+        // console.log(empresa.sectors.description)
         const li    = document.createElement("li")
         li.classList.add("box")
 

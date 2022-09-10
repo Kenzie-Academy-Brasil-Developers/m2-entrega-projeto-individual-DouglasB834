@@ -4,7 +4,7 @@ import { Toast } from "./tost.js";
 
 export class Requests {
 
-    //fazer o login
+    //fazer o login(FOI)
     static async login(data) {
         const loginUser = await instance
             .post("auth/login", data)
@@ -24,7 +24,7 @@ export class Requests {
 
     }
 
-    // fazer o cadastro
+    // fazer o cadastro (FOI)
     static async singup(data) {
 
         const newRegister = await instance
@@ -37,7 +37,7 @@ export class Requests {
             })
     }
 
-    //listar empresas 
+    //listar empresas  (foi!)
     static async listartodasEmpresas() {
         const posts = await instance
             .get(`companies`)
@@ -48,7 +48,7 @@ export class Requests {
 
         return posts
     }
-    //lista uma presa 
+    //lista uma empresa 
     static async listarCompany(name) {
         const posts = await instance
             .get(`companies/${name}`)
@@ -71,6 +71,7 @@ export class Requests {
         .catch(error =>{
             Toast.create(error, red)
         })
+        return funcionários
     }
 
     //listar os departamentos da empresa na qual o usuário faz parte
@@ -79,39 +80,45 @@ export class Requests {
         .get(`users/${dep}`)
         .then(res =>{
             Toast.create("listando os departamentos da empresa..,", "#35a953")
+            return res
         })
         .catch(error =>{
             Toast.create(error,"#f2867d")
         })
+        return departamento
     }
 
     //atualizar sua propria informação  normal email senha etc
     static async atualizaInf(data){
         const atualziar = await instance
-        patch("users",data)
+        .patch("users",data)
         .then(res =>{
             Toast.create("atualizando informações","#35a953")
         })
         .catch(error =>{
             Toast.create(error,"#f2867d")
         })
-        /* oque vou preciso        
-        {
-            "username": "Bertoldo",
-            "email": "bertoldo@mail.com",
-            "password": "senha123"
-        }
-        
-        */ 
     }
+    /* oque vou preciso        
+    {
+        "username": "Bertoldo",
+        "email": "bertoldo@mail.com",
+        "password": "senha123"
+    }
+    
+    */ 
 
-    // cadastrar empresa
+    // cadastrar empresa (travando API)
     static async registerCompany(data){
         const company = await instance
         .post("companies", data)
         .then(res =>{
             Toast.create("Empresa Cadastra com sucesso","#35a953")
+            setTimeout(()=>{
+                window.location.reload()
+            },1500)
             return res
+
         })
         .catch(error =>{
             Toast.create(error,"#f2867d")
@@ -128,11 +135,11 @@ export class Requests {
     
     */ 
 
-    // listar todos os setores 
+    // listar todos os setores (nao entendi por que isso de novop )
     static async listAllSectors(){
         const sector = await instance
-        get(`sectors`)
-        .then(res => Toast.create("Listando setores","#35a953"))
+        .get(`sectors`)
+        .then(res => res)
         .catch(error =>{
             Toast.create(error,"#f2867d")
         })
@@ -140,24 +147,28 @@ export class Requests {
 
     //DEPARTAMENTOS REQUEST 
 
-    //Rota para listar todos os departamentos
+    //Rota para listar todos os departamentos ()
+    // esta trvando APIn tambem 
     static async listAllDep(){
         const deparment = await instance
-        get("departments")
-        .then(res => Toast.create("Listando departamentos","#35a953"))
-        .catch(error =>{
-            Toast.create(error,"#f2867d")
-        })
+        .get("departments")
+        .then(res => res.data)
+        .catch(error => console.log(error))
+        return deparment
     }
 
     //Listar todos os departamentos de uma empresa ID
     static async listOneDep(id){
         const selecDep = await instance 
-        get(`departments/${id}`)
-        .then(res => Toast.create("departamentos dessa empresa","#35a953"))
+        .get(`departments/${id}`)
+        .then(res => {
+            Toast.create("departamentos dessa empresa","#35a953")
+            return res.data
+        })
         .catch(error =>{
             Toast.create(error,"#f2867d")
         })
+        return selecDep
         //id da empresa cujos departamentos serão listados deve ser informado na URI
     }
 
@@ -184,7 +195,7 @@ export class Requests {
     // Contratar funcionário
         static async hireUser(data){
             const user = await instance 
-            patch(`departments/hire/`,data)
+            .patch(`departments/hire/`,data)
             .then(res => Toast.create("departamentos dessa empresa","#35a953"))
             .catch(error => Toast.create(error,"#f2867d"))
             return user
@@ -205,9 +216,9 @@ export class Requests {
         }
 
         //editar a descrição de um departamento, passando o uuid do departamento na url
-        static async editDepartamet(data){
+        static async editDepartamet(data, id){
             const edit = await instance
-            patch(`departments/`,data)
+            .patch(`departments/${id}`,data)
             .then(res =>Toast.create("editador com sucesso","#4AD09D"))
             .catch(error => Toast.create(error,"#eb4235"))
         }
@@ -219,7 +230,7 @@ export class Requests {
         // Deletar departamento //res retorna apenas o status 204
         static async deletDep(id){
             const delet = await instance
-            delete(`departments/${id}`)
+            .delete(`departments/${id}`)
             .then(res => Toast.create("Departamento deletado com Sucesso" ,"#ee6357"))
             .catch(error => Toast.create(error, "#eb4235"))
         }
@@ -227,16 +238,16 @@ export class Requests {
         //Rota para listar todos os usuários (admin e funcionários) cadastrados no sistema
         static async listUsers(){
             const users = await instance
-            get(`users`)
+            .get(`users`)
             .then(res => res)
             .catch(error => console.log(error))
             return users
         }
 
         //Usuários todos sem departamentos
-        static async listAllDep(){
+        static async listAllUsersDep(){
             const notdep = await instance
-            get(`admin/out_of_work`)
+           .get(`admin/out_of_work`)
             .then(res =res)
             .catch(error => console.log(error))
         }
@@ -244,7 +255,7 @@ export class Requests {
         //Rota para atualização das informações do usuário
         static async updateUserInfo(data){
             const notdep = await instance
-            patch(`admin/update_user/${data}`)
+            .patch(`admin/update_user/${data}`)
             .then(res = Toast.create("atualizado com sucesso"))
             .catch(error => console.log(error))
             return notdep

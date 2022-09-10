@@ -191,6 +191,7 @@
 /* ======== Estilo container Listar Empresas */
 
 .container__empresas {
+    position: relative;
     width: 90%;
     margin: 0 auto;
     color: #fff;
@@ -200,52 +201,23 @@
 .container__empresas .renderEmpresas {
     display: flex;
     overflow-x: auto;
-    gap: 1rem;
-    
+    gap: 1rem;    
     background: url(https://api.lorem.space/image/furniture?w=260&h=150) center;
 
-
-
 }
 
-/* tamnho da li */
-.container__empresas .renderEmpresas .bx-wrapper {
-    width: 100%;
-    background: url(https://api.lorem.space/image/furniture?w=260&h=150) center;
-    border: 5px solid var(--grey2);
-    height: auto;
-    overflow: none;
-    border-radius: 5px;
-
-
+.btnListGeral{
+    margin-left: 5px;
+    font-size: var(--text2);
+    font-weight: 600;
 }
 
-.bx-wrapper .bx-controls-direction a {
-    z-index: 1;
-}
 
-.bx-next {}
 
-.bx-prev {
-    left: -45px;
-}
-
-.bx-wrapper .bx-controls-direction .bx-next {
-
-    right: -45px;
-}
-
-.bx-wrapper .bx-controls-direction .bx-prev {
-    left: -45px;
-}
-
-.bx-viewport {
-    overflow: none;
-}
 
 .renderEmpresas .renderEmpresa__li {
     background: linear-gradient(var(--grey-opacidade), var(--grey-opacidade));
-    min-width: 300px;
+    min-width: 80%;
    
 }
 
@@ -254,6 +226,7 @@
     flex-direction: column;
     gap: 1rem;
     padding: 1rem;
+    max-width: 100%;
 
 }
 
@@ -284,20 +257,79 @@
 
 .box_btns {
     text-align: center;
-    margin-bottom: 16px;
-    
-    /* background-color:var(--grey2); */
+    border-radius: 5px;
 }
 
 .box_btns>.btn-geral {
-    width: 20%;
+    width: 100%;
     padding: .4rem;
 
 }
 
+
+.criarDepartamento{
+    display: flex;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
+    text-align: center;
+    margin-top: .5rem;
+    color: var(--grey1);
+    position: absolute;
+    left:18% ; 
+    animation: criat 1s;
+    width: 100%;
+}
+.tirar{
+    animation: sair 1s;
+}
+@Keyframes criat{
+    0%{
+        left: -60%;
+
+    }
+    100%{
+        left: 18%;
+    }
+    
+}
+@Keyframes sair{
+    0%{
+        left: 10%;
+
+    }
+    100%{
+        left: -100%;
+    }
+    
+}
+
+
+/* .criarDepartamento > h3{
+    padding: .5rem;
+}
+
+.criarDepartamento .boxForm {
+    width: 160px;
+    
+}
+
+.criarDepartamento  .boxForm input{
+    padding: 0.9rem;
+    max-width: 100%;
+}
+
+.criarDepartamento  .btn-geral{
+  height: 20px;
+  width: 83%;
+  max-width: 76%;
+    
+} */
+
+
 /* ========== Estilo renderizar departamentos  e funcionarios ============ */
 
 .renderGeral {
+    margin-top: 4rem;
     padding: .5rem;
 
 }
@@ -317,11 +349,6 @@
 
 .renderGeral .ul__render_dep li {
 
-    /* display: flex;
-    flex-direction: column;
-    gap: 1rem; 
-     class="btn-geral"
-    */
 }
 
 .renderGeral .ul__render_dep li .box_content_infoDep {
@@ -332,14 +359,20 @@
     padding: .5rem;
     border: solid rgb(251, 134, 0) 1px;
     background-color: var(--whiteFixed);
-
     border-radius: 5px;
 
 }
 
-.ul__render_dep .btn-geral {
+.ul__render_dep .btnLisar{
     padding: 5px;
-    /* width: 20%; */
+    border-radius: 5px;
+    width: 45%;
+}
+
+.renderGeral .btnListGeral2{
+    width: 60%;
+    max-width: 200px;
+    margin-bottom: 5px;
 }
 
 .box_content_infoDep {}
@@ -349,6 +382,47 @@
 .box_content_infoDep p {}
 
 .box_content_infoDep>span {}
+
+
+/* estilo editar empresa  */
+.formEditar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+.formEditar i{
+   font-weight: 700;
+   font-size: 1.2rem;
+   cursor: pointer;
+   transition: .3s linear;
+}
+.formEditar .fa-solid:hover{
+   font-size: 1.4rem;
+}
+
+.formEditar .texto{
+    padding: 1rem;
+    width: 90%;
+    margin: auto;
+}
+.formEditar .texto::placeholder{
+    padding: 1rem;
+    font-size: var(--text2);
+  
+}
+.formEditar .btn-geral{
+    text-align: center;
+    width: 80%;
+    padding: .5rem;
+    border-radius: 5px;
+}
+
+
+
+
+
+
 
 
 /* carrosel */
@@ -369,5 +443,31 @@
         min-width: 460px;
        
     }
+    .box_content_infoDep .box_btns {
+        text-align: end;       
+         margin-bottom: 9px;
+ 
+    }
+    .box_content_infoDep .box_btns .btnLisar  {
+        max-width: 150px;
+ 
+    }
+
+    .box_btns {
+        text-align: center;
+        margin-bottom: 16px;
+        
+        /* background-color:var(--grey2); */
+    }
+
+    .criarDepartamento{
+        text-align: center;
+        margin-top: .5rem;
+        color: var(--grey1);
+        position: absolute;
+      
+        animation: criat 1s;
+    }
+ 
 
 }
