@@ -38,7 +38,7 @@ export class CriarModal {
         tagInputPassword.type        = "password"
         tagInputPassword.placeholder = "Sua senha"
 
-        const tagButtonLogar        = document.createElement("button")
+        const tagButtonLogar         = document.createElement("button")
 
         tagButtonLogar.classList.add("logar")
         tagButtonLogar.innerText    = "Logar"

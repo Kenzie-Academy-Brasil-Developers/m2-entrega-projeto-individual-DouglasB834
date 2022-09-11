@@ -90,6 +90,20 @@ export class Renders{
         Atacado.value           ="283e47bf-84e8-4994-8974-35d08a93cc45"
 
         tagSelect.append(options, alimenticio, varejo, textil, aeroEspacial, automotiva, ti, Atacado)
+        
+        
+        const tagI =document.createElement("i")
+        tagI.innerText  = "X"
+
+        tagI.addEventListener("click", ()=>{
+            const teste = document.querySelector(".container__modal")
+            divMain.classList.toggle("modal-disappear")
+           setTimeout(()=>{
+            teste.parentNode.removeChild(teste)
+           },1000)
+
+        })
+
 
         const tagDivbtn     = document.createElement("div")
         const btnRegister   = document.createElement("button")
@@ -105,7 +119,7 @@ export class Renders{
         
         tagDivbtn.append(btnRegister)
         
-        divMain.append(tagform)
+        divMain.append(tagI, tagform)
 
         return divMain
 

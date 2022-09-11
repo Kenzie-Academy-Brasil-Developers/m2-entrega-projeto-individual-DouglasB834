@@ -11,6 +11,7 @@ export class Requests {
             .then(res => {
                 localStorage.setItem("@empresaToken:token", res.data.token)
                 localStorage.setItem("@empresa:id", res.data.uuid)
+                localStorage.setItem("@admin", res.data.is_admin)
                 Toast.create("Login realizado com sucesso", "#0be881")
 
                 setTimeout(() => {
@@ -37,7 +38,7 @@ export class Requests {
             })
     }
 
-    //listar empresas  (foi!)
+    //listar todos empresas  (foi!)
     static async listartodasEmpresas() {
         const posts = await instance
             .get(`companies`)
@@ -108,7 +109,7 @@ export class Requests {
     
     */ 
 
-    // cadastrar empresa (travando API)
+    // cadastrar empresa (feito)
     static async registerCompany(data){
         const company = await instance
         .post("companies", data)
@@ -135,20 +136,21 @@ export class Requests {
     
     */ 
 
-    // listar todos os setores (nao entendi por que isso de novop )
+    // listar todos os setores (Listando na Homepage)
     static async listAllSectors(){
         const sector = await instance
         .get(`sectors`)
-        .then(res => res)
+        .then(res => res.data)
         .catch(error =>{
             Toast.create(error,"#f2867d")
         })
+        return sector
     }
 
     //DEPARTAMENTOS REQUEST 
 
     //Rota para listar todos os departamentos ()
-    // esta trvando APIn tambem 
+    // (feito)
     static async listAllDep(){
         const deparment = await instance
         .get("departments")
@@ -157,7 +159,7 @@ export class Requests {
         return deparment
     }
 
-    //Listar todos os departamentos de uma empresa ID
+    //Listar todos os departamentos de uma empresa ID (feito esta no selecte)
     static async listOneDep(id){
         const selecDep = await instance 
         .get(`departments/${id}`)
@@ -172,12 +174,13 @@ export class Requests {
         //id da empresa cujos departamentos serão listados deve ser informado na URI
     }
 
-    //Criar departamento para um empresa
+    //Criar departamento para um empresa (feito)
     static async registerDep(data){
+        
         const departament = await instance
         .post(`departments`, data)
         .then(res =>{
-            Toast.create("departamentos dessa empresa","#35a953")
+            Toast.create("departamentos criado com sucesso","#35a953")
         })
         .catch(error =>{
             Toast.create(error,"#f2867d")
@@ -196,7 +199,7 @@ export class Requests {
         static async hireUser(data){
             const user = await instance 
             .patch(`departments/hire/`,data)
-            .then(res => Toast.create("departamentos dessa empresa","#35a953"))
+            .then(res => Toast.create("Contratado com sucesso ","#35a953"))
             .catch(error => Toast.create(error,"#f2867d"))
             return user
         }
@@ -210,7 +213,7 @@ export class Requests {
         // Demitir funcionário ID
         static async dismissUser(id){
             const dismiss = await instance
-            .patch(`departments/dismiss/`, id)
+            .patch(`departments/dismiss/${id}`)
             .then(res =>Toast.create("desligado da empresa", "gray"))
             .catch(error => Toast.create(error, "red"))
         }
@@ -222,16 +225,14 @@ export class Requests {
             .then(res =>Toast.create("editador com sucesso","#4AD09D"))
             .catch(error => Toast.create(error,"#eb4235"))
         }
-        /* oque vou precisar
-    data{
-            "description": "Novo departamento de TI"
-        }*/
+       
         
         // Deletar departamento //res retorna apenas o status 204
+        //(SIm)
         static async deletDep(id){
             const delet = await instance
             .delete(`departments/${id}`)
-            .then(res => Toast.create("Departamento deletado com Sucesso" ,"#ee6357"))
+            .then(res => Toast.create("Departamento deletado com Sucesso" ,"#gray"))
             .catch(error => Toast.create(error, "#eb4235"))
         }
 
@@ -239,7 +240,7 @@ export class Requests {
         static async listUsers(){
             const users = await instance
             .get(`users`)
-            .then(res => res)
+            .then(res => res.data)
             .catch(error => console.log(error))
             return users
         }
@@ -253,10 +254,13 @@ export class Requests {
         }
 
         //Rota para atualização das informações do usuário
-        static async updateUserInfo(data){
+        static async updateUserInfo(data, id){
             const notdep = await instance
-            .patch(`admin/update_user/${data}`)
-            .then(res = Toast.create("atualizado com sucesso"))
+            .patch(`admin/update_user/${id}`, data )
+            .then(res =>{
+                Toast.create("atualizado com sucesso")
+                return res
+            })
             .catch(error => console.log(error))
             return notdep
         }
