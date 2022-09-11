@@ -13,11 +13,6 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    
-        <!-- Config   Fonte do  Slide Jquery  -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 
         <!-- Tost css -->
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
@@ -63,72 +58,44 @@
                             <a class="all_a" href="#">All</a>
                         </li>
                         <li>
-                            <a  class="btnCdastrarComp" href="#">Cadastrar Empresa</a>
+                            <a class="btnCdastrarComp" href="#">Cadastrar Empresa</a>
                         </li>
                         <li>
                             <a href="#">Listar Funcionarios</a>
-                        </li>                       
-                        <li>                            
-                             <button class="btns_singUp sair">Sair</button>
+                        </li>
+                        <li>
+                            <button class="btns_singUp sair">Sair</button>
                         </li>
                     </ul>
-                </nav>             
+                </nav>
 
             </div>
 
             <div class="cabecalho__menu_hamburgue">
-               
+
                 <button id="btnhowMenu">menu</button>
-                <!-- <i id="btnhowMenu" class="fa-solid fa-bars"></i> -->
                 <i id="btnFecharMenu" class="fa-solid fa-xmark"></i>
 
             </div>
         </div>
     </header>
-        
- <!--  cadastrar empresa -->
- <!-- <section class="container__modal">  
-
-    <div class="baseModal">
-
-        <form class="form_CadastrarEmpresa">
-            <h3>Cadastrar empresa</h3>
-            <input type="text" class="nameCompany" placeholder="Nome da empresa" required>
-            
-            <input type="time" class="openingHours" placeholder="Horario de abertura">
-            
-            <input type="text" class="description" placeholder="Descrição da Empresa">
-            
-            <select class="select_departamento" name="" id="departamento">
-            <option selected disabled value="" > Selecione setor</option>
-            <option value="cbb5b34a-6f5e-4eb2-8d1c-ad20993710f2">Alimenticio</option>
-            <option value="99a0282f-ead0-42d5-bda2-5f3b9e373b4b">Varejo</option>
-            <option value="164a2dbf-87ab-4109-be30-73165a717e04">Textil</option>
-            <option value="047f6741-39e9-47eb-bee4-b236f8df18ee">Aero Espacial</option>
-            <option value="e76cc30a-96eb-45c2-93b2-a15ef7aab2b2">Automotiva</option>
-            <option value="17247c6b-5205-4067-9695-278fcb97d592">tecnologia TI</option>
-            <option value="ee99c41f-14bc-47e3-891b-9ccd9c799d1a">Atacado</option>
-            
-        </select>
-        
-        <div>
-            <button class="btnRegisterCompany btn-geral">Cadastrar Empresa</button>
-        </div>
-        
-    </form>
-</div>         
-
-</section> -->
 
     <main class="main_container">
+        <section class="setores">
+            <h3>Setores</h3>
+            <ul class="setor_ul">
+            
+            </ul>
+        </section>
         <!-- empresasa -->
         <section class="container__empresas">
-           
+
             <h2 class="title">
                 <span>Empresas</span>
-              </h2>
+            </h2>
 
             <ul class="renderEmpresas">
+
                 <!-- slid com Jquery  -->
                 <!--  <div class="ap" id="slider"> 
                                     
@@ -215,21 +182,53 @@
 
                 </div> -->
             </ul>
-
+            
         </section>
-        
+
 
         <!-- DEPARTAMTOS E FUNCIONARIOS -->
-        <section class="renderGeral">            
-            <h2>Departamentos</h2>
+        <section class="renderGeral">
+            <h2>Informações</h2>
+            <div class="box_btns">
+                <div class="box_btns">
+                    <button class="btnListGeral2 btn-geral">Listar todos Dep</button>
+                    <button class="btListarFuncionarios btn-geral">Todos os Funcionarios</button>
+                </div>
+                <ul class="ul__render_dep">
 
-            <ul class="ul__render_dep">
-                <li>
+                    <!-- <li class="listarUsuario">
+                        <img src="https://api.lorem.space/image/face?w=80&h=80" alt="Usuario">
+                        <div class="info">
+                            <h4>nome</h4>
+                            <p>email</p>
+                            <p>professional_level</p>
+                            <p>department_uuid</p>
+                        </div>
+                        
+                        <div class="box_btns">
+                            <button>contratar</button>
+                            <button>demitir</button>
+                        </div>
+
+                    </li> -->
+
+
+
+                    <!-- <li>
+                    {
+  "name": "Ensino",
+  "description": "Equipe responsável para ensinar os alunos",
+  "company_uuid": "76319b59-e26a-4b96-9715-98f38d6dba57"
+}
+
+
                     <div class="box_content_infoDep">
+                        
                         <h3>nome: ti</h3>
                         <p>description: departamento TI</p>
                         <p>Empresa</p>
                         <span>Horario funcionamento: 09:00</span>
+
                         <div class="box_btns">
                             <button class="btnLisar btn-geral">funcionarios</button>
                         </div>
@@ -270,13 +269,97 @@
                             <button class="btnLisar btn-geral">funcionarios</button>
                         </div>
                     </div>
-                </li>
-            </ul>
+                </li> -->
+                </ul>
 
         </section>
 
 
     </main>
+    <!-- <div class="container__modal ">
+        <div class="baseModal">
+            <form class="formEditar">
+
+                <i class="btnClose">x</i>
+
+                <textarea class="texto" cols="10" rows="5"></textarea>
+                <button class="btn-geral btnAtualizar">enviar atualização</button>
+            </form>
+        </div>
+        
+    </div> -->
+
+    <!-- <div class="container__modal criarDepartamento">
+        <div class="baseModal">
+            <form class="boxForm">
+
+                <h3>Criar departamento</h3>
+                <input type="text" placeholder="Criar novo Departamento">
+                <input type="text" placeholder="Descrição do departamento">
+
+                <button class="btn-geral">Registar</button>
+            </form>
+
+        </div>
+    </div> -->
+
+    <!-- <div class="container__modal">
+
+        <div class="baseModal">
+            <div class="editar">
+
+                <p>nome Usuario</p>
+                <p>email</p>
+                <select class="deparament">                
+                    <option value="">RH</option>
+                    <option value="">TI</option>
+                    <option value="">Desining</option>        
+                </select>
+                <button class="btn-geral">contratar</button>
+                
+            </div>
+
+        </div>
+
+
+    </div> -->
+
+    <!-- <div class="container__modal">
+
+        <div class="baseModal">
+            <div class="editar">
+
+                <p>nome Usuario</p>
+                <p>setor que trabalha</p>
+                <input type="text" placeholder="local do trablho">
+                <select>
+                    <option value="">presencial</option>
+                    <option value="">home office</option>
+                    <option value="">hibrido</option>
+                    <option value="">null</option>
+
+                </select>
+                
+                <select>
+                    <option value="">presencial</option>
+                    <option value="">home office</option>
+                    <option value="">hibrido</option>
+                    <option value="">null</option>
+
+                </select>
+              
+
+                
+                <button class="btn-geral">contratar</button>
+                
+            </div>
+
+        </div>
+
+
+    </div> -->
+    
+
 
 
 
@@ -284,15 +367,7 @@
     <footer>
         douglas Borges
     </footer>
- 
-  <!-- Configuração slide JS jquery  FOi o Gui que me ensinou   -->
-            
-        <script src="https://smtpjs.com/v3/smtp.js"></script>
-        <script>
-        
-            $(document).ready(function(){$('#slider').bxSlider();});
-
-        </script>
+    <a href="userPage.html"></a>
 
 </body>
 

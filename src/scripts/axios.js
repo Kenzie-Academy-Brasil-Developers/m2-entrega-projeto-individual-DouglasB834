@@ -1,5 +1,5 @@
 
-const token = localStorage.getItem("@kenzieRedeSocial:token");
+const token = localStorage.getItem("@empresaToken:token");
 
 
 export const instance = axios.create({
@@ -9,4 +9,5 @@ export const instance = axios.create({
         Authorization: `Bearer ${token}`
     }
 })
+// console.log(token)
 

@@ -38,7 +38,7 @@ export class Renders{
         tagDescription.classList.add("description")
         
         tagInputCompany.type     = "text"
-        tagTime.type             = "text"
+        tagTime.type             = "time"
         tagDescription.type      = "text"
 
         tagInputCompany.placeholder = "Nome da empresa"
@@ -49,18 +49,19 @@ export class Renders{
         tagDescription.required     = true
 
 
-        const tagSelect     = document.createElement("select")
+        const tagSelect         = document.createElement("select")
 
-        const options       = document.createElement("option")
-        const alimenticio   = document.createElement("option")
-        const varejo        = document.createElement("option")
-        const textil        = document.createElement("option")
-        const aeroEspacial  = document.createElement("option")
-        const automotiva    = document.createElement("option")
-        const tagManuf      = document.createElement("option")
-        const ti            = document.createElement("option")
-        const Atacado       = document.createElement("option")
-
+        const options           = document.createElement("option")
+        const alimenticio       = document.createElement("option")
+        const varejo            = document.createElement("option")
+        const textil            = document.createElement("option")
+        const aeroEspacial      = document.createElement("option")
+        const automotiva        = document.createElement("option")
+        const tagManuf          = document.createElement("option")
+        const ti                = document.createElement("option")
+        const Atacado           = document.createElement("option")
+       
+        
         tagSelect.id            = "addSetor"
         options.innerText       = "Selecione Setor"
         
@@ -89,6 +90,20 @@ export class Renders{
         Atacado.value           ="283e47bf-84e8-4994-8974-35d08a93cc45"
 
         tagSelect.append(options, alimenticio, varejo, textil, aeroEspacial, automotiva, ti, Atacado)
+        
+        
+        const tagI =document.createElement("i")
+        tagI.innerText  = "X"
+
+        tagI.addEventListener("click", ()=>{
+            const teste = document.querySelector(".container__modal")
+            divMain.classList.toggle("modal-disappear")
+           setTimeout(()=>{
+            teste.parentNode.removeChild(teste)
+           },1000)
+
+        })
+
 
         const tagDivbtn     = document.createElement("div")
         const btnRegister   = document.createElement("button")
@@ -104,7 +119,7 @@ export class Renders{
         
         tagDivbtn.append(btnRegister)
         
-        divMain.append(tagform)
+        divMain.append(tagI, tagform)
 
         return divMain
 
