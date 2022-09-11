@@ -15,7 +15,11 @@ export class Requests {
                 Toast.create("Login realizado com sucesso", "#0be881")
 
                 setTimeout(() => {
-                    window.location.replace("src/pages/dashboard.html")
+                    if(res.data.is_admin == true){
+                        window.location.replace("src/pages/dashboard.html")
+                    }else{
+                        window.location.replace("src/pages/userPage.html")
+                    }
                 }, 1000)
             })
             .catch(error => {
@@ -261,7 +265,7 @@ export class Requests {
                 Toast.create("atualizado com sucesso")
                 return res
             })
-            .catch(error => console.log(error))
+            .catch(error =>  Toast.create(error, "#eb4235"))
             return notdep
         }
         /*o que vou precisar

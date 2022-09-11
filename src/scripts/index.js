@@ -1,14 +1,15 @@
 import { CriarModal } from "./modal.js"
 import { Requests } from "./request.js"
-
+const admin = localStorage.getItem("@admin")
 export class Index{
 
     static indexRender(){
         const token = localStorage.getItem("@empresaToken:token")
-        if(token){   
+        if(token && admin == true){   
             console.log(token )       
             window.location.assign("src/pages/dashboard.html")
-            
+        }else if(admin==false && token ){
+            window.location.replace("src/pages/userPage.html")
         }
     }
 

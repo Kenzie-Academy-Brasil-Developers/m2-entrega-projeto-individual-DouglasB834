@@ -373,7 +373,7 @@
     width: 45%;
 }
 
-.renderGeral .btnListGeral2, .btListarFuncionarios{
+.renderGeral .btnListGeral2, .btListarFuncionarios ,.btnFuncionarioSemDep{
     width: 60%;
     max-width: 200px;
     margin-bottom: 5px;
@@ -479,8 +479,17 @@
 
 
 
-
-
+/* stilo modal para funcionariso de um  departamento  */
+.ul__depFuncioarios{
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: auto;
+    gap: .5rem;
+}
+.ul__depFuncioarios li{
+   
+  
+}
 
 
 

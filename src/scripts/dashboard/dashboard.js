@@ -1,6 +1,7 @@
 import { Requests } from "../request.js"
+// import { Toast } from "../tost.js"
 import { Renders } from "./modalDashboard.js"
-    const teste = localStorage.getItem("@admin")
+    const admin = localStorage.getItem("@admin")
     
 // FN Basicas 
 class PartiuM3{
@@ -11,7 +12,7 @@ class PartiuM3{
 
     static sairPage(){
         
-        if(!this.token){         
+        if(!this.token && admin == "false"){         
             window.location.assign("../../../homepage.html")
             
         }
@@ -19,6 +20,7 @@ class PartiuM3{
         btns_singUp.addEventListener("click", ()=>{
             localStorage.removeItem("@empresa:id")
             localStorage.removeItem("@empresaToken:token")
+            localStorage.removeItem("@@admin")
             window.location.replace("../../../homepage.html")
         })
             
@@ -66,16 +68,18 @@ class index{
         })        
 
     }
+
     static async listarSetores(){
         const setor_ul = document.querySelector(".setor_ul")
         const sectores = await Requests.listAllSectors()
+  
         sectores.forEach(element =>{
+                        
             const li = document.createElement("li")
             li.innerText    = element.description
             li.id           = element.uuid
             setor_ul.append(li)
         })
-        console.log(sectores)
     }
 
     static newCompany(){
@@ -97,21 +101,29 @@ class index{
         })
 
     }
-
+    // LISTAR TODOAS AS EMPRESA
     static async listcompany(){
-        // const slider = document.querySelector(".ap")
+        const setores = document.querySelector(".setor_ul")
         const tagUl = document.querySelector(".renderEmpresas")
-        const empresas = await Requests.listartodasEmpresas()
+        const empresas = await Requests.listartodasEmpresas()       
         empresas.forEach( async element => {
-            tagUl.append( this.renderEmpresa(element))           
-           
-        });
+            tagUl.append( this.renderEmpresa(element))
+        }); 
+                
+        setores.addEventListener("click", (event)=>{
+            tagUl.innerText =""
+            const teste = empresas.filter(element=>{  
+                if(element.sectors.uuid == event.target.id ){
+                    tagUl.append( this.renderEmpresa(element))   
+                    return element                     
+                }
+            })
+        })
         index.listDep()
-        
+       
     }
 
     static renderEmpresa(company){
-        console.log(company)
         const tagLI             = document.createElement("li")
 
         const tagDivMain        = document.createElement("div")
@@ -148,21 +160,24 @@ class index{
         tagTodosOsDep.innerText = "List todos :dep"
         tagSelect.append(tagTodosOsDep)
         
-        //listar dep da empresa
+        //listar dep da empresa 
         tagSelect.addEventListener("click", async (event)=>{
             const departamento = await Requests.listOneDep(event.target.id)
             
-            console.log(departamento )
-            if(departamento.length){                
+           
+            if(departamento.length){  
+
                 tagSelect.innerText         = ""
-                departamento.forEach(element =>{    
+                const dep = departamento.filter(element => {    
                     const optionDep         = document.createElement("option")
                     optionDep.innerText     = element.name
                     optionDep.id            = element.uuid
                     tagSelect.append(optionDep)  
-    
-                   
+                    
+                    //TESTE
+                  
                 })
+                this.funcionariosPorDep(dep)
             }else{
                 tagTodosOsDep.innerText = "Sem departamento"
             }
@@ -177,7 +192,7 @@ class index{
             body.append(renderCadastrar)
         })
         
-
+       
         tagDivinfo.append(tagH3, tagSpan, tagP)
         tagboxBtn.append(btnCriarDep)
 
@@ -190,7 +205,7 @@ class index{
     
 
     static criarDep(id){
-
+       
         const tagDiv            = document.createElement("div")
         const tagPai            = document.createElement("div")
         const tagForm           = document.createElement("form")
@@ -233,7 +248,6 @@ class index{
             tagDiv.classList.toggle("modal-disappear")
             setTimeout(()=>{
                 tagDiv.remove()
-                index.listDep()
             },1000)
             //post
 
@@ -253,16 +267,17 @@ class index{
         const btnListGeral  = document.querySelector(".btnListGeral2") 
           
         btnListGeral.addEventListener("click", async ()=>{  
-
             tagUlDep.innerText  = ""
             const departament   = await Requests.listAllDep()
-            
+                  
             departament.forEach( element =>{
-                const listaDep = this.renderDep(element)
+                const listaDep  = this.renderDep(element)
                 tagUlDep.append(listaDep)
-            })
-            
+
+            })            
         })
+
+
        
     }
 
@@ -280,6 +295,7 @@ class index{
         const boxBtn            = document.createElement("div")
         const btnListarF        = document.createElement("button")
         const btnExcluirDep     = document.createElement("button")
+        const funcionarios     = document.createElement("button")
 
         tagDivInfo.classList.add("box_content_infoDep")
         boxBtn.classList.add("box_btns")
@@ -288,9 +304,14 @@ class index{
 
         btnExcluirDep.classList.add("btn-geral")
         btnExcluirDep.classList.add("btnLisar")
+
+        funcionarios.classList.add("btn-geral")
+        funcionarios.classList.add("btnLisar")
         
 
         //alimentando informação
+
+        funcionarios.innerText = "Funcionario dep"
         btnExcluirDep.innerText = "Excluir dep"
         btnListarF.innerText    = "Editar Dep.."
         tagH3.innerText         = dep.name
@@ -298,25 +319,130 @@ class index{
         tagPEmpresa.innerText   = dep.companies.name
         tagSpanTime.innerText   = dep.companies.opening_hours
 
-        btnListarF.addEventListener("click" ,() => {
-           
+        btnListarF.addEventListener("click" ,() => {           
             this.atualizarDep(dep)
         })
 
         btnExcluirDep.addEventListener("click", ()=>{
             index.ExcluirDepartament(dep)
         })
+
+        funcionarios.addEventListener("click", ()=>{
+           
+            this.modalFuncinariosDep(dep)
+        })
         
-        boxBtn.append(btnListarF,btnExcluirDep)
+        boxBtn.append(btnListarF,btnExcluirDep, funcionarios)
         tagDivInfo.append(tagH3, tagPDesc,tagPEmpresa, tagSpanTime, boxBtn )
         tagLi.append(tagDivInfo)
         return tagLi
 
     }
 
+    static async modalFuncinariosDep(info){
+        const body              = document.querySelector("body")
+        const tagDivContainer   = document.createElement("div")
+        const tagBaseModal      = document.createElement("div")
+        const tagUl             = document.createElement("ul")
+
+        tagUl.classList.add("ul__depFuncioarios")
+        tagDivContainer.classList.add("container__modal")
+        tagBaseModal.classList.add("baseModal")
+
+        const tagI        = document.createElement("button")
+        tagI.classList.add("close")
+        tagI.innerText              = "X"
+        tagI.addEventListener("click", ()=>{
+            tagDivContainer.classList.toggle("modal-disappear")
+           setTimeout(()=>{
+            tagDivContainer.remove()
+           },600)
+
+        })
+ 
+
+        const usuario = await Requests.listUsers() 
+
+        usuario.forEach(usuario =>{    
+            if(info.uuid == usuario.department_uuid ){
+                
+                const final = this.modalFuncinarios(usuario)           
+                
+                tagUl.append(final)
+                tagBaseModal.append(tagI ,tagUl)
+                tagDivContainer.append(tagBaseModal)
+                
+                body.append(tagDivContainer) 
+                
+            }
+            
+        })
+    
+    }
+
+    static modalFuncinarios(usuario){
+    
+         const tagLi             = document.createElement("li")
+     
+        const tagImg            = document.createElement("img")
+        const tagDivInfo        = document.createElement("div")
+        const tagH4             = document.createElement("h4")
+        const tagPEmail         = document.createElement("p")
+        const nivelProff        = document.createElement("p")
+        const boxBtn            = document.createElement("div")
+        const editarUser        = document.createElement("button")
+        
+        tagLi.classList.add("listarUsuario")
+        tagDivInfo.classList.add("info")
+        boxBtn.classList.add("box_btns")
+        editarUser.classList.add("btn-geral")
+        
+        if(usuario.department_uuid ==null){
+            const btn = document.createElement("button")
+            btn.classList.add("btn-geral")
+            btn.innerText ="contratar"
+            boxBtn.append(btn)
+
+            btn.addEventListener("click", ()=>{
+                this.contrarFuncioanrio(usuario)
+            })
+
+        }else{
+            const btnDemitir = document.createElement("button")
+            btnDemitir.classList.add("btn-geral")
+            btnDemitir.innerText ="Demitir"
+            boxBtn.append(btnDemitir)
+
+            btnDemitir.addEventListener("click", ()=>{
+                this.demitirFuncionario(usuario)
+            })
+
+        }
+
+        editarUser.addEventListener("click", ()=>{
+            index.editarFuncinario(usuario)
+
+        })
+        tagImg.src              = "https://api.lorem.space/image/face?w=80&h=80"  
+
+        tagH4.innerText         = usuario.username
+        tagPEmail.innerText     = usuario.email
+        nivelProff.innerText    = usuario.professional_level
+        editarUser.innerText    = "editar"
+        boxBtn.append(editarUser)
+        tagDivInfo.append(tagH4, tagPEmail, nivelProff,boxBtn)
+        tagLi.append(tagImg, tagDivInfo)
+
+      
+        return tagLi
+
+    }
+
+
+
     static ExcluirDepartament(deparment){
         const   body = document.querySelector("body")
-        console.log(deparment)
+     
         const tagDivContainer   = document.createElement("div")
         const tagBaseModal      = document.createElement("div")
         const tagBtnSim         = document.createElement("buttom")
@@ -352,7 +478,6 @@ class index{
                 tagDivContainer.remove()
             },1000)
         })
-
 
         body.append(tagDivContainer)
         tagDivContainer.append(tagBaseModal)
@@ -395,10 +520,10 @@ class index{
            },600)
 
         })
-        console.log(nome.uuid)
+
         // atualizar descrição Dep
         btnAtualizar.addEventListener("click", () =>{
-            console.log(textarea.value)
+        
             const objeto ={
                 description: textarea.value
             }
@@ -415,19 +540,21 @@ class index{
         container__modal.append(baseModal)
         body.append( container__modal)
 
-
     }
     
     static async listarUsuario(){
         const tagUl = document.querySelector(".ul__render_dep")
+        tagUl.innerText = ""
+        const btnSemDep = document.querySelector(".btnFuncionarioSemDep")
         const btnListar = document.querySelector(".btListarFuncionarios")
        
         const usuario = await Requests.listUsers()
+
         usuario.forEach( async element =>{
             tagUl.append(index.usuarioCadastrado(element))
-
             
         })
+
         btnListar.addEventListener("click", ()=>{
             tagUl.innerText = ""
             usuario.forEach( async element =>{
@@ -437,11 +564,23 @@ class index{
             })
         })
 
-       
+        btnSemDep.addEventListener("click", ()=>{                    
+            tagUl.innerText = ""
+            usuario.forEach( async element =>{                
+                if(!element.department_uuid){
+                  tagUl.append(index.usuarioCadastrado(element))
+            }
+              
+            })
+        })
+
+
     }
+
     //todos
-    static  usuarioCadastrado(usuario){
+    static  usuarioCadastrado(usuario){  
         const tagLi             = document.createElement("li")
+     
         const tagImg            = document.createElement("img")
         const tagDivInfo        = document.createElement("div")
         const tagH4             = document.createElement("h4")
@@ -483,7 +622,6 @@ class index{
 
         })
         tagImg.src              = "https://api.lorem.space/image/face?w=80&h=80"
-     
 
         tagH4.innerText         = usuario.username
         tagPEmail.innerText     = usuario.email
@@ -503,35 +641,59 @@ class index{
       
         const tagDivMain            = document.createElement("div")
         const tagDivBaseModal       = document.createElement("div")
-        const tadEditar             = document.createElement("div")
+        const tagDivEditar             = document.createElement("div")
         const tagNome               = document.createElement("p")
         const tagEmail              = document.createElement("p")
         const tagEmpresa            = document.createElement("span")
         const btnContratar          = document.createElement("button")
-
-        const presencial            = document.createElement("option")
-        const homeOffice            = document.createElement("option")
-        const hibrido               = document.createElement("option")
         
-        const select                = document.createElement("select")
-        const select2               = document.createElement("select")
+        const select2                = document.createElement("select")
+        const select               = document.createElement("select")
+
+        const opcao1                =  document.createElement("option")
+        const opcao2                =  document.createElement("option")
+        const opcao3                =  document.createElement("option")
+
+        //kind_of_work
+        opcao1.innerText            = "home office"
+        opcao2.innerText            = "presencial"
+        opcao3.innerText            = "hibrido"
+
+        opcao1.id                   = "home office"
+        opcao2.id                   = "presencial"
+        opcao3.id                   = "hibrido"
+
+
+        //professional_level select2
+        const opcaoJob1                 =  document.createElement("option")
+        const opcaoJob2                 =  document.createElement("option")
+        const opcaoJob3                 =  document.createElement("option")
+        const opcaoJob4                 =  document.createElement("option")
+        // const opcaoJob5                 =  document.createElement("option")
+        //estágio, júnior, pleno, sênior"
+        opcaoJob1.innerText             = "estágio"
+        opcaoJob2.innerText             = "junior"
+        opcaoJob3.innerText             = "pleno"
+        opcaoJob4.innerText             = "sênior"
+
+        opcaoJob1.id                    = "estágio"
+        opcaoJob2.id                    = "júnior"
+        opcaoJob3.id                    = "pleno"
+        opcaoJob4.id                    = "sênior"
 
         tagDivMain.classList.add("container__modal")
         tagDivBaseModal.classList.add("baseModal")
 
         select.classList.add("deparament")
         btnContratar.classList.add("btn-geral")
-        tadEditar.classList.add("editar")
-        
+        tagDivEditar.classList.add("editar")
         
         btnContratar.innerText      = "Editar informação"
         tagNome.innerText           = infUsuario.username 
         tagEmpresa.innerText        = infUsuario.professional_level
         tagEmail.innerText          = infUsuario.email
-
         const id                    = infUsuario.uuid
-    
-        
+
         const tagI =document.createElement("i")
         tagI.innerText  = "X"
         tagI.addEventListener("click", ()=>{
@@ -541,26 +703,31 @@ class index{
            },1000)
 
         })
+        //btn editar 
+        select.append(opcaoJob1, opcaoJob2, opcaoJob3, opcaoJob4)
+        select2.append(opcao1, opcao2, opcao3)
+
         btnContratar.addEventListener("click", ()=>{
-            const level         = select2.options[select.selectedIndex].id;
-            const localTrabalho = select.options[select.selectedIndex].id;
-            
-            // console.log(level)
-            console.log(localTrabalho)
+            const localJob         = select2.options[select2.selectedIndex].id;
+            const levelJob         = select.options[select.selectedIndex].id;
 
             const objeto ={
-                kind_of_work: localTrabalho,
-                professional_level  : level
+                kind_of_work: localJob,
+                professional_level  : levelJob
             }
             console.log(objeto)
-            // Requests.updateUserInfo(objeto, id)
+            Requests.updateUserInfo(objeto, id)
+            tagDivMain.classList.toggle("modal-disappear")
+            setTimeout(()=>{
+             tagDivMain.remove()
+            },1000)
 
         })
 
 
 
-        tadEditar.append(tagNome,tagEmail, tagEmpresa, select,select2, btnContratar)
-        tagDivBaseModal.append(tagI,tadEditar)
+        tagDivEditar.append(tagNome,tagEmail, tagEmpresa, select,select2, btnContratar)
+        tagDivBaseModal.append(tagI,tagDivEditar)
         tagDivMain.append(tagDivBaseModal)
         body.append(tagDivMain)
 
@@ -580,8 +747,6 @@ class index{
 
         const select            = document.createElement("select")
        
-
-        
         tagDivMain.classList.add("container__modal")
         tagDivBaseModal.classList.add("baseModal")
 
@@ -598,9 +763,6 @@ class index{
         const todosDep  = await Requests.listAllDep()
         const empresas  = await Requests.listartodasEmpresas()
 
-
-   
-        console.log(todosDep)
         empresas.forEach(idEMpresa =>{
 
             const idEmpresa = idEMpresa.uuid
@@ -628,7 +790,11 @@ class index{
                 department_uuid: idDep
             }
             Requests.hireUser(objeto)
-            //objeto
+          
+            tagDivMain.classList.toggle("modal-disappear")
+            setTimeout(()=>{
+             tagDivMain.remove()
+            },1000)
 
         })
        
@@ -642,8 +808,6 @@ class index{
 
         })
 
-
-
         tadEditar.append(tagNome, tagEmail, select, btnContratar)
         tagDivBaseModal.append(tagI,tadEditar)
         tagDivMain.append(tagDivBaseModal)
@@ -652,17 +816,16 @@ class index{
     }
 
     static demitirFuncionario(usuario){
-        const   body = document.querySelector("body")
-        console.log(usuario)
-        const tagDivContainer = document.createElement("div")
-        const tagBaseModal = document.createElement("div")
-        const tagBtnSim = document.createElement("buttom")
-        const tagBtnNao = document.createElement("buttom")
-        const tagH3 = document.createElement("h3")
-        const tagP = document.createElement("p")
-        const tagSpan = document.createElement("span")
-        const tagBoxBtn = document.createElement("div")
-        const taginformacao = document.createElement("div")
+        const   body            = document.querySelector("body")
+        const tagDivContainer   = document.createElement("div")
+        const tagBaseModal      = document.createElement("div")
+        const tagBtnSim         = document.createElement("buttom")
+        const tagBtnNao         = document.createElement("buttom")
+        const tagH3             = document.createElement("h3")
+        const tagP              = document.createElement("p")
+        const tagSpan           = document.createElement("span")
+        const tagBoxBtn         = document.createElement("div")
+        const taginformacao     = document.createElement("div")
 
         tagDivContainer.classList.add("container__modal")
         tagBaseModal.classList.add("baseModal")
@@ -674,7 +837,7 @@ class index{
 
         tagSpan.innerText   = usuario.professional_level
         tagH3.innerText     = "excluir funcionario?"
-        tagP.innerText   = usuario.username
+        tagP.innerText      = usuario.username
         tagBtnSim.innerText = "SIM"
         tagBtnNao.innerText = "Não"
         const ID = usuario.uuid
@@ -696,7 +859,6 @@ class index{
             },1000)
         })
 
-
         body.append(tagDivContainer)
         tagDivContainer.append(tagBaseModal)
         
@@ -709,6 +871,7 @@ class index{
 
 }
 
+// index.funcionariosPorDep()
 
 index.listarSetores()
 index.listarUsuario()
