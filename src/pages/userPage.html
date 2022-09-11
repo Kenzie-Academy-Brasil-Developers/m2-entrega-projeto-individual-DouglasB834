@@ -1,12 +1,134 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UsuarioPage</title>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="EMpresa ERP ">
+        <link rel="shortcut icon" href="../assets/logoself.png" type="image/x-icon">
+        <!-- Link google Ftons  -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+        <!-- Tost css -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+        <!-- tost JS -->
+        <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+        <!-- Axios  -->
+        <script defer src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <!--  icons  -->
+        <script src="https://kit.fontawesome.com/f39f42120f.js" crossorigin="anonymous"></script>
+        <!-- Link config Java Script -->
+        <script type="module" defer src="../scripts/dashboard/dashboard.js"></script>
+        <script type="module" defer src="../scripts/darkmode.js"></script>
+
+        <!-- link Config CSS -->
+        <link rel="stylesheet" href="../styles/reset.css">
+        <link rel="stylesheet" href="../styles/component.css">
+        <link rel="stylesheet" href="../styles/dashboard/dashboard.css">
+        <link rel="stylesheet" href="../styles/dashboard/animationModal.css">
+        <title>Make You Self</title>
+    </head>
 </head>
+
 <body>
-        <h1>Show</h1>
+    <header class="cabecalho">
+
+        <div class="cabecalho__container">
+            <div class="cabecalho__container-logo">
+                <h2 class="logo_mibile"> <i class="fa-sharp fa-solid fa-fire"></i> mYSelf</h2>
+                <h2 class="logo_desk"> <i class="fa-sharp fa-solid fa-fire"></i> Make YSelf</h2>
+            </div>
+
+            <div class="darkMode">
+                <i class="fa fa-moon-o" aria-hidden="true"></i>
+                <i class="fa-solid fa-sun"></i>
+            </div>
+
+            <div class="cabecalho__menu hidden">
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="#">Listar Funcionarios</a>
+                        </li>
+                        <li>
+                            <button class="btns_singUp sair">Sair</button>
+                        </li>
+                    </ul>
+                </nav>
+
+            </div>
+
+            <div class="cabecalho__menu_hamburgue">
+
+                <button id="btnhowMenu">menu</button>
+                <i id="btnFecharMenu" class="fa-solid fa-xmark"></i>
+
+            </div>
+        </div>
+    </header>
+
+    <main class="main_container">
+        <section class="setores">
+            <h3>Setores</h3>
+            <!-- listar por setor  -->
+            <ul class="setor_ul">
+            
+            </ul>
+        </section>
+        <!-- empresasa -->
+        <section class="container__empresas">
+
+            <h2 class="title">
+                <span>Empresas</span>
+         
+            </h2>
+
+            <ul class="renderEmpresas">
+
+            </ul>
+            
+        </section>
+
+
+        <!-- DEPARTAMTOS E FUNCIONARIOS -->
+        <section class="renderGeral">
+            <h2 class="title">Informações</h2>
+            <div class="box_btns">
+                <div class="box_btns">
+                    <button class="btnListGeral2 btn-geral">Listar todos Dep</button>
+                    <button class="btListarFuncionarios btn-geral">Todos os Funcionarios</button>
+                    <button class="btnFuncionarioSemDep btn-geral">Funcionarios sem dep</button>
+
+                </div>
+
+
+
+                <ul class="ul__render_dep">
+
+      
+
+        </section>
+
+
+    </main>
+  
+
+
+
+
+
+    <footer>
+        douglas Borges
+    </footer>
+    <a href="userPage.html"></a>
+
 </body>
+
 </html>
