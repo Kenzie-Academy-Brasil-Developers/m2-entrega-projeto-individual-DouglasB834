@@ -72,9 +72,10 @@ export class Requests {
         .get(`users/departments/${nomeDep}`)
         .then(res => {
             Toast.create("listando os Funcionarios do departamento..." ,"gray")
+            return res.data
         })
         .catch(error =>{
-            Toast.create(error, red)
+            Toast.create(error," red")
         })
         return funcionários
     }
@@ -92,6 +93,22 @@ export class Requests {
         })
         return departamento
     }
+
+    static async informacaoFuncionario(data){
+        const user = await instance
+        .get(`users/profile/`)
+        .then(res =>{
+            Toast.create("listando informação..,", "#35a953")
+            return res.data
+        })
+        .catch(error =>{
+            Toast.create(error,"#f2867d")
+        })
+        return user
+    }
+
+
+
 
     //atualizar sua propria informação  normal email senha etc
     static async atualizaInf(data){
@@ -207,12 +224,7 @@ export class Requests {
             .catch(error => Toast.create(error,"#f2867d"))
             return user
         }
-        /*O que vou precisar
-        {
-            "user_uuid": "0212ff4a-94de-4c97-8fbf-e7e4bb06e258",
-            "department_uuid": "fc65d0be-507e-4c6e-badc-ccc4417ef980"
-        } //https://api.lorem.space/image/face?w=150&h=150 img aleatoria gratis 
-        */
+      
 
         // Demitir funcionário ID
         static async dismissUser(id){
@@ -237,6 +249,12 @@ export class Requests {
             const delet = await instance
             .delete(`departments/${id}`)
             .then(res => Toast.create("Departamento deletado com Sucesso" ,"#gray"))
+            .catch(error => Toast.create(error, "#eb4235"))
+        }
+        static async deletUser(id){
+            const delet = await instance
+            .delete(`admin/delete_user/${id}`)
+            .then(res => Toast.create(" deletado com Sucesso" ,"#gray"))
             .catch(error => Toast.create(error, "#eb4235"))
         }
 
@@ -268,13 +286,7 @@ export class Requests {
             .catch(error =>  Toast.create(error, "#eb4235"))
             return notdep
         }
-        /*o que vou precisar
-        {
-            "kind_of_work": "presencial",
-            "professional_level": "pleno"
-        }
-        
-        */
+      
 
 
 }
