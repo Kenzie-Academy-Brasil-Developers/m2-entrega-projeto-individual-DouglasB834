@@ -1,4 +1,5 @@
 import { Requests } from "../request.js"
+import { Toast } from "../tost.js"
 
 console.log("salve")
 
@@ -65,7 +66,9 @@ class RenderUsers{
 
         nome.innerText =  funcionarios.username
         email.innerText =  funcionarios.email
-        nivel.innerText =  funcionarios.professional_level
+        nivel.innerText =  `Nivel ${funcionarios.professional_level}`
+        const idUser = funcionarios.department_uuid
+        this.departamento(idUser)
     }
 
 
@@ -74,8 +77,7 @@ class RenderUsers{
         const user = await Requests.funcionarioDepartamento()
 
         user.forEach( async element=>{
-            this.pessoas(element.users)
-         
+            this.pessoas(element.users)        
           
         })
       
@@ -86,8 +88,6 @@ class RenderUsers{
         const   tagUl  = document.querySelector(".funcionarios")
         user.forEach(element=>{
 
-            // console.log(element)
-     
         const tagLi             = document.createElement("li")
       
         const tagImg            = document.createElement("img")
@@ -99,8 +99,6 @@ class RenderUsers{
         tagLi.classList.add("listarUsuario")
         tagDivInfo.classList.add("info")
        
-
-      
         tagImg.src              = "https://api.lorem.space/image/face?w=80&h=80"  
 
         tagH4.innerText         = element.username
@@ -117,18 +115,30 @@ class RenderUsers{
 
     }
     
-    static async departamento(){
+    static async departamento(id){
         const departamentos = document.querySelector(".departamentos")
        const dep =  await Requests.depDaEmpresaDoFuncinario()
        dep.departments.forEach(element=>{
-           console.log(element)
           
+           if(id == element.uuid){
+                departamentos.append( this.renderDepEmpresa(element))
+
+            }
            
-            departamentos.append( this.renderDepEmpresa(element))
         })
+     
+        const nomeEmpresa   = document.querySelector(".nomeEmpresa")
+        const horario       = document.querySelector(".horario")
+        const desc          = document.querySelector(".desc")
+
+        nomeEmpresa.innerText   = dep.name
+        horario.innerText       = dep.opening_hours
+        desc.innerText          = dep.description
+
+
     }
     static renderDepEmpresa(dep){
-
+    
         const tagLi             = document.createElement("li")
         const tagDivInfo        = document.createElement("div")
 
@@ -151,8 +161,86 @@ class RenderUsers{
 
     }
     
+    static editarFuncionario(){
+        const btnEditar = document.querySelector(".btnEditar")
+
+        btnEditar.addEventListener("click", ()=>{
+            this.ultimoMOdal()
+        })
+    }
+
+    static ultimoMOdal(){
+        const body              = document.querySelector("body")
+        const modal             = document.createElement("div")
+        const tagBaseModal      = document.createElement("form")
+        const modalinfo         = document.createElement("div")
+
+        const titulo            = document.createElement("h3")
+        const inputUserName     = document.createElement("input")
+        const inputEmail        = document.createElement("input")
+        const inputPassword     = document.createElement("input")
+        const sairPage          = document.createElement("p")
+
+        const btnEnviar         = document.createElement("buttom")
+        
+        inputUserName.innerText
+        inputEmail.innerText
+        inputPassword.innerText
+
+        titulo.innerText            = "atualizar Informação"
+        inputUserName.placeholder   = "digite seu Nome"
+        inputEmail.placeholder      = "digite seu  Email"
+        inputPassword.placeholder   = "digite Nova senha"
+        btnEnviar.innerText         = "Atualizar"
+        btnEnviar.classList.add("editarFuncionario")
+        sairPage.innerHTML          = `<i class="fa-solid fa-x"></i>`
+
+
+
+        sairPage.addEventListener("click", ()=>{
+            modal.classList.toggle("modal-disappear")
+           setTimeout(()=>{
+            modal.remove()
+           },600)
+
+        })
+
+
+
+
+
+
+
+        btnEnviar.addEventListener("click", ()=>{
+
+                const objeto = {
+                    username:inputUserName.value,
+                    email: inputEmail.value,
+                    password: inputPassword.value
+                }
+                Requests.atualizaInf(objeto)
+                modal.classList.toggle("modal-disappear")
+                setTimeout(()=>{
+                modal.remove()
+                location.reload()
+           },1200)
+         
+
+        })
+
+        modalinfo.classList.add("titiloAtualizar")
+        modal.classList.add("container__modal")
+        tagBaseModal.classList.add("modal")
+        modalinfo.classList.add("editar")
+
+        modalinfo.append(sairPage ,titulo,inputUserName, inputEmail, inputPassword, btnEnviar)
+        tagBaseModal.append(modalinfo)
+        modal.append(tagBaseModal)
+        body.append(modal)
+    }
+
 
 }
-RenderUsers.departamento()
+RenderUsers.editarFuncionario()
 RenderUsers.renderPessoas()
 RenderUsers.funcionarios()
