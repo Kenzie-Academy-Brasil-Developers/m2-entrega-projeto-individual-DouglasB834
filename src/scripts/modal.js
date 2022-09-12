@@ -130,8 +130,7 @@ export class CriarModal {
         pleno.innerText     = "pleno"
         senior.value        = "sênior"
         senior.innerText    = "sênior"
-        
-        console.log(senior.value)
+
         select.append(nivel,estagio,junior,pleno,senior)
 
         const tagInputJob               = document.createElement("input")

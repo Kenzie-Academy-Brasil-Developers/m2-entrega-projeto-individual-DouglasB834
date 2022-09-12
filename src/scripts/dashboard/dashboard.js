@@ -1,5 +1,4 @@
 import { Requests } from "../request.js"
-// import { Toast } from "../tost.js"
 import { Renders } from "./modalDashboard.js"
     const admin = localStorage.getItem("@admin")
     
@@ -364,7 +363,7 @@ class index{
         const usuario = await Requests.listUsers() 
 
         usuario.forEach(usuario =>{    
-            if(info.uuid == usuario.department_uuid ){
+            if(info.uuid == usuario.department_uuid){
                 
                 const final = this.modalFuncinarios(usuario)           
                 
@@ -588,6 +587,14 @@ class index{
         const nivelProff        = document.createElement("p")
         const boxBtn            = document.createElement("div")
         const editarUser        = document.createElement("button")
+
+        const tagBtnDeletar     = document.createElement("buttom")
+        tagBtnDeletar.innerText = "deletar"
+        
+        tagBtnDeletar.classList.add("btn-geral")
+
+
+
     
         tagLi.classList.add("listarUsuario")
         tagDivInfo.classList.add("info")
@@ -621,13 +628,23 @@ class index{
             index.editarFuncinario(usuario)
 
         })
+        // console.log(usuario)
+        tagBtnDeletar.id = usuario.uuid
+
+        tagBtnDeletar.addEventListener("click", ()=>{
+            Requests.deletUser(tagBtnDeletar.id)
+        })
+
+
+
+
         tagImg.src              = "https://api.lorem.space/image/face?w=80&h=80"
 
         tagH4.innerText         = usuario.username
         tagPEmail.innerText     = usuario.email
         nivelProff.innerText    = usuario.professional_level
         editarUser.innerText    = "editar"
-        boxBtn.append(editarUser)
+        boxBtn.append(editarUser,tagBtnDeletar)
         tagDivInfo.append(tagH4, tagPEmail, nivelProff,boxBtn)
         tagLi.append(tagImg, tagDivInfo)
         return tagLi
@@ -821,6 +838,7 @@ class index{
         const tagBaseModal      = document.createElement("div")
         const tagBtnSim         = document.createElement("buttom")
         const tagBtnNao         = document.createElement("buttom")
+  
         const tagH3             = document.createElement("h3")
         const tagP              = document.createElement("p")
         const tagSpan           = document.createElement("span")
@@ -834,6 +852,7 @@ class index{
         tagBtnNao.classList.add("btn-geral")
         tagBtnNao.classList.add("naoExcluir")
         taginformacao.classList.add("infoExcluir")
+     
 
         tagSpan.innerText   = usuario.professional_level
         tagH3.innerText     = "excluir funcionario?"
@@ -841,6 +860,7 @@ class index{
         tagBtnSim.innerText = "SIM"
         tagBtnNao.innerText = "Não"
         const ID = usuario.uuid
+      
 
 
         tagBtnSim.addEventListener("click" ,()=>{
@@ -859,13 +879,15 @@ class index{
             },1000)
         })
 
+      
+
         body.append(tagDivContainer)
         tagDivContainer.append(tagBaseModal)
         
         tagBaseModal.append(taginformacao)
         taginformacao.append(tagH3, tagP, tagSpan, tagBoxBtn)
 
-        tagBoxBtn.append(tagBtnSim ,tagBtnNao)
+        tagBoxBtn.append(tagBtnSim ,tagBtnNao )
     }
 
 

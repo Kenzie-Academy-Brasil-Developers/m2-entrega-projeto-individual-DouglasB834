@@ -1,0 +1,31 @@
+
+.funcionarios{
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: auto;
+    gap: .5rem;
+}
+.funcionarios li{
+    border: solid rgb(251, 134, 0) 1px;
+}
+
+.departamentos{
+    height: 105px;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: auto;
+    align-items: center;
+    gap: .5rem;
+}
+.departamentos li{
+    background: linear-gradient(var(--grey-opacidade), var(--grey-opacidade));
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border: solid;
+    min-width: 160px;
+    height: 90px;
+    justify-content: center;
+    color: var( --colortext);
+    border: solid rgb(251, 134, 0) 1px;
+}
