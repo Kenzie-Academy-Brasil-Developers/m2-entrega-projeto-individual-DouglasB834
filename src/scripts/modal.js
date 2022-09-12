@@ -104,14 +104,11 @@ export class CriarModal {
         tagInputEmail.placeholder       = "Seu e-mail"
         tagInputEmail.required          =true
 
-
-
         const tagInputPassword          = document.createElement("input")
         tagInputPassword.classList.add("password")
         tagInputPassword.type           = "password"
         tagInputPassword.placeholder    = "Sua senha"
         tagInputPassword.required       = true
-
 
         const select    = document.createElement("select")
         const estagio   = document.createElement("option")
@@ -119,7 +116,6 @@ export class CriarModal {
         const pleno     = document.createElement("option")
         const senior    = document.createElement("option")
         const nivel     = document.createElement("option")
-
        
         nivel.innerText = "qual e seu nivel ?"   
         estagio.innerText   = "estágio"

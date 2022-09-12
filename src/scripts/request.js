@@ -107,7 +107,7 @@ export class Requests {
         return user
     }
 
-    //atualizar sua propria informação  normal email senha etc
+
     static async atualizaInf(data){
         const atualziar = await instance
         .patch("users",data)
@@ -117,15 +117,7 @@ export class Requests {
         .catch(error =>{
             Toast.create(error,"#f2867d")
         })
-    }
-    /* oque vou preciso        
-    {
-        "username": "Bertoldo",
-        "email": "bertoldo@mail.com",
-        "password": "senha123"
-    }
-    
-    */ 
+    } 
 
     // cadastrar empresa (feito)
     static async registerCompany(data){
@@ -181,7 +173,7 @@ export class Requests {
             Toast.create(error,"#f2867d")
         })
         return selecDep
-        //id da empresa cujos departamentos serão listados deve ser informado na URI
+       
     }
 
     //Criar departamento para um empresa (feito)
@@ -197,13 +189,6 @@ export class Requests {
         })
         return departament
     }
-    /* O que vou precisar 
-    {
-        "name": "Ensino",
-        "description": "Equipe responsável para ensinar os alunos",
-        "company_uuid": "76319b59-e26a-4b96-9715-98f38d6dba57"
-    }
-    */
 
     // Contratar funcionário
         static async hireUser(data){

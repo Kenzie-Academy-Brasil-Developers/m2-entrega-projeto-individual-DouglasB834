@@ -1,8 +1,4 @@
 import { Requests } from "../request.js"
-import { Toast } from "../tost.js"
-
-console.log("salve")
-
     const admin = localStorage.getItem("@admin")
     Requests
 // FN Basicas 
@@ -71,18 +67,14 @@ class RenderUsers{
         this.departamento(idUser)
     }
 
-
-    static async renderPessoas(){
-      
+    static async renderPessoas(){   
         const user = await Requests.funcionarioDepartamento()
 
         user.forEach( async element=>{
-            this.pessoas(element.users)        
-          
+            this.pessoas(element.users)                
         })
       
     }
-
 
     static pessoas(user){
         const   tagUl  = document.querySelector(".funcionarios")
@@ -137,6 +129,7 @@ class RenderUsers{
 
 
     }
+
     static renderDepEmpresa(dep){
     
         const tagLi             = document.createElement("li")
@@ -146,10 +139,6 @@ class RenderUsers{
         const tagPDesc          = document.createElement("p")
 
         tagDivInfo.classList.add("box_content_infoDep")
-       
-        
-
-        //alimentando informação
 
         tagH3.innerText   = dep.name
         tagPDesc.innerText      = dep.description
@@ -194,8 +183,6 @@ class RenderUsers{
         btnEnviar.innerText         = "Atualizar"
         btnEnviar.classList.add("editarFuncionario")
         sairPage.innerHTML          = `<i class="fa-solid fa-x"></i>`
-
-
 
         sairPage.addEventListener("click", ()=>{
             modal.classList.toggle("modal-disappear")
