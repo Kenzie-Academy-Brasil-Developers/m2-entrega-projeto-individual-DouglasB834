@@ -1,5 +1,4 @@
 
-
 class darkMode{
 
     static darkEvent(){

@@ -2,11 +2,9 @@ import { CriarModal } from "./modal.js"
 import { Requests } from "./request.js"
 const admin = localStorage.getItem("@admin")
 export class Index{
-
     static indexRender(){
         const token = localStorage.getItem("@empresaToken:token")
-        if(token && admin == true){   
-            console.log(token )       
+        if(token && admin == true){         
             window.location.assign("src/pages/dashboard.html")
         }else if(admin==false && token ){
             window.location.replace("src/pages/userPage.html")
@@ -45,6 +43,7 @@ export class Index{
 
         })
     }
+
     static getLogin(){
         const inputlogin = document.querySelector(".email")
         const inputlPass = document.querySelector(".password")
@@ -88,11 +87,9 @@ export class Index{
 
 }
 
-
 Index.indexRender()
 Index.Showlogin()
 Index.ShowSingup()
-
 
 class listarEmpresas{
 
@@ -136,8 +133,6 @@ class listarEmpresas{
     }
 
     static  renderEmpresa(empresa){
-
-        // console.log(empresa.sectors.description)
         const li    = document.createElement("li")
         li.classList.add("box")
 

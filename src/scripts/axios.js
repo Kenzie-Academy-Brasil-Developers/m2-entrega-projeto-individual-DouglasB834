@@ -1,7 +1,6 @@
 
 const token = localStorage.getItem("@empresaToken:token");
 
-
 export const instance = axios.create({
     baseURL: "http://localhost:6278/",
     headers: {
@@ -9,5 +8,5 @@ export const instance = axios.create({
         Authorization: `Bearer ${token}`
     }
 })
-// console.log(token)
+
 

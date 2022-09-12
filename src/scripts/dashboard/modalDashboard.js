@@ -17,7 +17,6 @@ export class Renders{
 
     }
 
-
     static registerCompany(cadastrar){
 
         const divMain           = document.createElement("div")
