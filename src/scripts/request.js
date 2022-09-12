@@ -89,7 +89,7 @@ export class Requests {
             return res.data
         })
         .catch(error =>{
-            Toast.create(error,"#f2867d")
+            Toast.create("Não esta registrado em nenhuma empresa","#f2867d")
         })
         return departamento
     }
@@ -106,7 +106,6 @@ export class Requests {
         })
         return user
     }
-
 
     static async atualizaInf(data){
         const atualziar = await instance
