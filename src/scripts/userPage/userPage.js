@@ -11,7 +11,7 @@ class PartiuM3{
     static sairPage(){
         
         if(!this.token && admin == "false"){         
-            window.location.assign("../../../homepage.html")
+            window.location.assign("../../../index.html")
             
         }
         const btns_singUp = document.querySelector(".btns_singUp ")
@@ -19,7 +19,7 @@ class PartiuM3{
             localStorage.removeItem("@empresa:id")
             localStorage.removeItem("@empresaToken:token")
             localStorage.removeItem("@@admin")
-            window.location.replace("../../../homepage.html")
+            window.location.replace("../../../index.html")
         })
             
     }
