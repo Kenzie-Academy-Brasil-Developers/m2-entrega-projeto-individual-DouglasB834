@@ -1,0 +1,101 @@
+h2{
+    color: var(--colortext);
+}
+
+.myUser{
+    display: flex;
+    gap: 1rem;
+    color: var(--colortext);
+    
+}
+
+.empresaUser{
+  
+    background: linear-gradient(var(--grey-opacidade), var(--grey-opacidade));
+    border-radius: 5px;
+    border: solid rgb(251, 134, 0) 1px;
+}
+.minhasInfo{
+    text-align: center;
+    border-radius: 5px;
+    border: solid var(--grey4) 1px;
+}
+
+
+.minhasInfo .btnEditar{
+    margin-top: 10px;
+    padding: .4rem; 
+    background-color: var(--grey3);
+}
+.minhasInfo .btnEditar:hover{
+    padding: .4rem; 
+    background-color: var(--grey1);
+    color: var(--whiteFixed);
+}
+.minhasInfo .btnEditar:active{
+    padding: .4rem; 
+    background-color: var(--grey1);
+    color: var(--whiteFixed);
+}
+
+
+
+
+
+.funcionarios{
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: auto;
+    gap: .5rem;
+}
+.funcionarios li{
+    border: solid rgb(251, 134, 0) 1px;
+}
+
+.departamentos{
+    height: 105px;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: auto;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
+}
+.departamentos li{
+    background: linear-gradient(var(--grey-opacidade), var(--grey-opacidade));
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border: solid;
+    min-width: 160px;
+    height: 90px;
+    justify-content: center;
+    color: var( --colortext);
+    border: solid rgb(251, 134, 0) 1px;
+}
+
+
+/* EDITAR  */
+.editar{
+    display: flex;
+    background-color: var(--grey2);
+    width: 300px;
+    height: 300px;
+    padding: 1rem;
+    justify-content: center;
+    flex-direction: column;
+}
+.editar input {
+    padding: 1rem;
+}
+
+.editarFuncionario{
+    background-color: var(--grey4);
+    padding: .5rem;
+    font-weight: 500;
+    color: var(--colortext);
+}
+.titiloAtualizar{
+
+    color: var(--whiteFixed);
+}

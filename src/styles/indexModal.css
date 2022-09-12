@@ -23,8 +23,6 @@
    
 }
 
-
-
 .modal-disappear{
     animation: closeLoginModal 1.5s;
 }
@@ -54,11 +52,6 @@
 
 }
 
-
-
-
-
-
 .container__modal>.modal>.form {
     display: flex;
     flex-direction: column;
@@ -67,26 +60,27 @@
     justify-content: center;
     gap: 1rem;
 }
+
 .container__modal>.modal>.form input ,button{
     width: 90%;
     padding: .6rem;
     border-radius: 2px;
     outline: none;
     border: 1px solid var(--grey4);
-    cursor: pointer;
-    
+    cursor: pointer; 
 }
+
 .container__modal>.modal>.form >button {
     width: 98%;
-    
     background-color: var(--brand-1);
     color: var(--whiteFixed);
-
 }
+
 .container__modal>.modal>.form >button:hover{
     background-color: var(--grey2);
     color: var(--whiteFixed);
 }
+
 .voltarLogin{
     border: solid 1px ;
     padding: .4rem;
@@ -112,12 +106,14 @@
     margin: 1rem 0;
     text-align: center;
 }
+
 .container__modal > .modal > button {
     width: 98%;
     background-color: var(--whiteFixed);
     color: var(--grey1)
     
 }
+
 .container__modal > .modal > button:active{
     background-color: var(--grey3);
     color: var(--whiteFixed);
@@ -129,16 +125,17 @@
     justify-content: space-between;
     align-items: center;
 }
+
 .modal >div >h2 {
     font-size: var(--title1);
     font-weight: 700;
     color: var(--grey1);
 }
+
 .modal >div span{
     font-size: var(--text2);
     font-weight: 600;
     color: var(--grey1);
     border: 1px solid var(--grey1);
     padding: 4px 10px;
-
 }

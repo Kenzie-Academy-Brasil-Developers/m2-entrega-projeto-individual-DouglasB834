@@ -1,7 +1,6 @@
 import { Requests } from "../request.js"
-// import { Toast } from "../tost.js"
 import { Renders } from "./modalDashboard.js"
-    const admin = localStorage.getItem("@admin")
+const admin = localStorage.getItem("@admin")
     
 // FN Basicas 
 class PartiuM3{
@@ -13,7 +12,7 @@ class PartiuM3{
     static sairPage(){
         
         if(!this.token && admin == "false"){         
-            window.location.assign("../../../homepage.html")
+            window.location.assign("../../../index.html")
             
         }
         const btns_singUp = document.querySelector(".btns_singUp ")
@@ -21,7 +20,7 @@ class PartiuM3{
             localStorage.removeItem("@empresa:id")
             localStorage.removeItem("@empresaToken:token")
             localStorage.removeItem("@@admin")
-            window.location.replace("../../../homepage.html")
+            window.location.replace("../../../index.html")
         })
             
     }
@@ -52,8 +51,6 @@ class PartiuM3{
 // Chamadas
 PartiuM3.showMenu()
 PartiuM3.sairPage()
-
-
 
 class index{
 
@@ -295,7 +292,7 @@ class index{
         const boxBtn            = document.createElement("div")
         const btnListarF        = document.createElement("button")
         const btnExcluirDep     = document.createElement("button")
-        const funcionarios     = document.createElement("button")
+        const funcionarios      = document.createElement("button")
 
         tagDivInfo.classList.add("box_content_infoDep")
         boxBtn.classList.add("box_btns")
@@ -307,10 +304,8 @@ class index{
 
         funcionarios.classList.add("btn-geral")
         funcionarios.classList.add("btnLisar")
-        
 
         //alimentando informação
-
         funcionarios.innerText = "Funcionario dep"
         btnExcluirDep.innerText = "Excluir dep"
         btnListarF.innerText    = "Editar Dep.."
@@ -360,11 +355,10 @@ class index{
 
         })
  
-
         const usuario = await Requests.listUsers() 
 
         usuario.forEach(usuario =>{    
-            if(info.uuid == usuario.department_uuid ){
+            if(info.uuid == usuario.department_uuid){
                 
                 const final = this.modalFuncinarios(usuario)           
                 
@@ -588,6 +582,11 @@ class index{
         const nivelProff        = document.createElement("p")
         const boxBtn            = document.createElement("div")
         const editarUser        = document.createElement("button")
+
+        const tagBtnDeletar     = document.createElement("buttom")
+        tagBtnDeletar.innerText = "deletar"
+        
+        tagBtnDeletar.classList.add("btn-geral")
     
         tagLi.classList.add("listarUsuario")
         tagDivInfo.classList.add("info")
@@ -621,13 +620,20 @@ class index{
             index.editarFuncinario(usuario)
 
         })
+
+        tagBtnDeletar.id = usuario.uuid
+
+        tagBtnDeletar.addEventListener("click", ()=>{
+            Requests.deletUser(tagBtnDeletar.id)
+        })
+
         tagImg.src              = "https://api.lorem.space/image/face?w=80&h=80"
 
         tagH4.innerText         = usuario.username
         tagPEmail.innerText     = usuario.email
         nivelProff.innerText    = usuario.professional_level
         editarUser.innerText    = "editar"
-        boxBtn.append(editarUser)
+        boxBtn.append(editarUser,tagBtnDeletar)
         tagDivInfo.append(tagH4, tagPEmail, nivelProff,boxBtn)
         tagLi.append(tagImg, tagDivInfo)
         return tagLi
@@ -637,7 +643,7 @@ class index{
     //Editar Funcionario
     static editarFuncinario(infUsuario){
 
-         const body                 = document.querySelector("body")
+        const body                 = document.querySelector("body")
       
         const tagDivMain            = document.createElement("div")
         const tagDivBaseModal       = document.createElement("div")
@@ -663,14 +669,12 @@ class index{
         opcao2.id                   = "presencial"
         opcao3.id                   = "hibrido"
 
-
         //professional_level select2
         const opcaoJob1                 =  document.createElement("option")
         const opcaoJob2                 =  document.createElement("option")
         const opcaoJob3                 =  document.createElement("option")
         const opcaoJob4                 =  document.createElement("option")
-        // const opcaoJob5                 =  document.createElement("option")
-        //estágio, júnior, pleno, sênior"
+      
         opcaoJob1.innerText             = "estágio"
         opcaoJob2.innerText             = "junior"
         opcaoJob3.innerText             = "pleno"
@@ -715,7 +719,6 @@ class index{
                 kind_of_work: localJob,
                 professional_level  : levelJob
             }
-            console.log(objeto)
             Requests.updateUserInfo(objeto, id)
             tagDivMain.classList.toggle("modal-disappear")
             setTimeout(()=>{
@@ -723,8 +726,6 @@ class index{
             },1000)
 
         })
-
-
 
         tagDivEditar.append(tagNome,tagEmail, tagEmpresa, select,select2, btnContratar)
         tagDivBaseModal.append(tagI,tagDivEditar)
@@ -821,6 +822,7 @@ class index{
         const tagBaseModal      = document.createElement("div")
         const tagBtnSim         = document.createElement("buttom")
         const tagBtnNao         = document.createElement("buttom")
+  
         const tagH3             = document.createElement("h3")
         const tagP              = document.createElement("p")
         const tagSpan           = document.createElement("span")
@@ -834,6 +836,7 @@ class index{
         tagBtnNao.classList.add("btn-geral")
         tagBtnNao.classList.add("naoExcluir")
         taginformacao.classList.add("infoExcluir")
+     
 
         tagSpan.innerText   = usuario.professional_level
         tagH3.innerText     = "excluir funcionario?"
@@ -841,6 +844,7 @@ class index{
         tagBtnSim.innerText = "SIM"
         tagBtnNao.innerText = "Não"
         const ID = usuario.uuid
+      
 
 
         tagBtnSim.addEventListener("click" ,()=>{
@@ -859,19 +863,19 @@ class index{
             },1000)
         })
 
+      
+
         body.append(tagDivContainer)
         tagDivContainer.append(tagBaseModal)
         
         tagBaseModal.append(taginformacao)
         taginformacao.append(tagH3, tagP, tagSpan, tagBoxBtn)
 
-        tagBoxBtn.append(tagBtnSim ,tagBtnNao)
+        tagBoxBtn.append(tagBtnSim ,tagBtnNao )
     }
-
 
 }
 
-// index.funcionariosPorDep()
 
 index.listarSetores()
 index.listarUsuario()
