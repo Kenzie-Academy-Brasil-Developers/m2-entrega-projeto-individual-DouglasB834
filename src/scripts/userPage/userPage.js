@@ -55,15 +55,25 @@ class RenderUsers{
     static token = localStorage.getItem("@empresaToken:token")
 
     static async funcionarios(){
-        const nome  = document.querySelector(".name")        
-        const email  = document.querySelector(".empresa")        
-        const nivel  = document.querySelector(".nivel")        
-        const funcionarios = await Requests.informacaoFuncionario()
+        const nome          = document.querySelector(".name")        
+        const email         = document.querySelector(".empresa")        
+        const nivel         = document.querySelector(".nivel")        
+        const ondeTrabalha  = document.querySelector(".ondeTrabalha")        
+        const funcionarios  = await Requests.informacaoFuncionario()
 
-        nome.innerText =  funcionarios.username
-        email.innerText =  funcionarios.email
+        nome.innerText          =  funcionarios.username
+        email.innerText         =  funcionarios.email
+        if(funcionarios.kind_of_work){
+            ondeTrabalha.innerText  =  `${funcionarios.kind_of_work}`
+
+        }else{
+            ondeTrabalha.innerText = "sem local de trabaalho"
+        }
+
         nivel.innerText =  `Nivel ${funcionarios.professional_level}`
         const idUser = funcionarios.department_uuid
+        console.log(funcionarios)
+
         this.departamento(idUser)
     }
 

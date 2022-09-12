@@ -1,15 +1,16 @@
+import { Requests } from "../request.js";
 
 
 
 //Render dash border
-
+// Requests
 export class Renders{
 
     static body = document.querySelector("body");
     static token = localStorage.getItem("empresaToken:token")
     static meuId = localStorage.getItem("@empresa:id")
 
-    static templates(modal){
+    static  templates(modal){
         const section_modalPadrao = document.createElement("section")
         section_modalPadrao.classList.add("container__modal")
         section_modalPadrao.append(modal)
@@ -18,7 +19,7 @@ export class Renders{
     }
 
 
-    static registerCompany(cadastrar){
+    static  registerCompany(cadastrar){
 
         const divMain           = document.createElement("div")
         divMain.classList.add("baseModal")
@@ -50,6 +51,8 @@ export class Renders{
 
 
         const tagSelect         = document.createElement("select")
+
+
 
         const options           = document.createElement("option")
         const alimenticio       = document.createElement("option")

@@ -88,6 +88,11 @@ h2{
 .editar input {
     padding: 1rem;
 }
+.user{
+    display: flex;
+    width: 150px;
+    flex-direction: column;
+}
 
 .editarFuncionario{
     background-color: var(--grey4);
