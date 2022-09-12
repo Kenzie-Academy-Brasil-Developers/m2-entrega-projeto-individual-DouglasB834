@@ -66,10 +66,10 @@ export class Requests {
     }
 
     // FUNCIONARIOS NORMAL
-    // Listar todos os funcionários do mesmo departamento (usuario normal)
-    static async funcionarioDepartamento(nomeDep){
+    // Listar todos os funcionários do mesmo departamento
+    static async funcionarioDepartamento(){
         const funcionários = await instance
-        .get(`users/departments/${nomeDep}`)
+        .get(`users/departments/coworkers`)
         .then(res => {
             Toast.create("listando os Funcionarios do departamento..." ,"gray")
             return res.data
@@ -80,13 +80,13 @@ export class Requests {
         return funcionários
     }
 
-    //listar os departamentos da empresa na qual o usuário faz parte
+    // Listar os Departamentos da empresa do funcionário logado
     static async depDaEmpresaDoFuncinario(dep){
         const departamento = await instance
-        .get(`users/${dep}`)
+        .get(`users/departments`)
         .then(res =>{
             Toast.create("listando os departamentos da empresa..,", "#35a953")
-            return res
+            return res.data
         })
         .catch(error =>{
             Toast.create(error,"#f2867d")
@@ -94,11 +94,11 @@ export class Requests {
         return departamento
     }
 
+    //funcinario 
     static async informacaoFuncionario(data){
         const user = await instance
         .get(`users/profile/`)
         .then(res =>{
-            Toast.create("listando informação..,", "#35a953")
             return res.data
         })
         .catch(error =>{
@@ -106,9 +106,6 @@ export class Requests {
         })
         return user
     }
-
-
-
 
     //atualizar sua propria informação  normal email senha etc
     static async atualizaInf(data){
@@ -147,15 +144,7 @@ export class Requests {
         })
         return company
     }
-    /*OQUE PRECISO 
-    {
-        "name": "Kenzie",
-        "opening_hours": "09:00",
-        "description": "Kenzie kenzie kenzie",
-        "sector_uuid": "17247c6b-5205-4067-9695-278fcb97d592"
-    }
-    
-    */ 
+ 
 
     // listar todos os setores (Listando na Homepage)
     static async listAllSectors(){
