@@ -9,7 +9,7 @@
     display: flex;
     flex-direction: column;
     top: 76px;
-    right: 3%;
+    right: 0%;
     gap: 1rem;
     z-index: 2;
 }
@@ -82,13 +82,14 @@
 
 .cabecalho__menu nav ul {
     background: gray;
+    border-radius: 5px;
 
 
 }
 
 .cabecalho__menu nav ul li {
     background-color: var(--whiteFixed);
-    margin-bottom: .5rem;
+    margin-bottom: .2rem;
     padding: .5rem;
     border-radius: 5px;
 }
@@ -424,12 +425,32 @@
     max-width: 100%;
 }
 
-
-.editar{
+.listarUsuario .btn-geral{
     display: flex;
     flex-direction: column;
     gap: .5rem;
+    margin-bottom: 10px;
+    border-radius: 2px;
+    align-items: center;
+}
+.editar{
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+}
+.editar select{
+    margin: 0 auto;
+    padding: 1rem;
+    width: 50%;
+
+}
+.btnDeletar {
+    border-radius: 5px;
+    margin-top: 10px;
+    background-color: rgb(231, 61, 61);
+    padding: .4em;
+    
 }
 
 
@@ -470,7 +491,7 @@
 
     .box_content_infoDep .box_btns .btnLisar  {
         max-width: 250px;
-        width: 80px;
+        width: 112px;
 
  
     }

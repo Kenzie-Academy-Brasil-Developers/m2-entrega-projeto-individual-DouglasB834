@@ -122,13 +122,14 @@ class index{
 
     static renderEmpresa(company){
         const tagLI             = document.createElement("li")
-
+        console.log(company.sectors.description)
         const tagDivMain        = document.createElement("div")
 
         const tagDivinfo        = document.createElement("div")
         const tagH3             = document.createElement("h3")
         const tagSpan           = document.createElement("span")
         const tagP              = document.createElement("p")
+        const tagPDesc              = document.createElement("p")
         const tagSelect         = document.createElement("select")
         
         const tagboxBtn         = document.createElement("div")
@@ -147,6 +148,7 @@ class index{
         tagH3.innerText         = company.name
         tagSpan.innerText       = company.opening_hours
         tagP.innerText          = company.description
+        tagPDesc.innerText      = company.sectors.description
         tagSelect.id            = company.uuid 
 
         const idDaEmpresa       = company.uuid 
@@ -188,16 +190,14 @@ class index{
        
             body.append(renderCadastrar)
         })
-        
        
-        tagDivinfo.append(tagH3, tagSpan, tagP)
+        tagDivinfo.append(tagH3, tagSpan, tagP, tagPDesc)
         tagboxBtn.append(btnCriarDep)
 
         tagDivMain.append(tagDivinfo, tagSelect)
         tagLI.append(tagDivMain, tagboxBtn)
        
-        return tagLI
-        
+        return tagLI        
     }
     
 
@@ -586,7 +586,8 @@ class index{
         const tagBtnDeletar     = document.createElement("buttom")
         tagBtnDeletar.innerText = "deletar"
         
-        tagBtnDeletar.classList.add("btn-geral")
+        // tagBtnDeletar.classList.add("")
+        tagBtnDeletar.classList.add("btnDeletar")
     
         tagLi.classList.add("listarUsuario")
         tagDivInfo.classList.add("info")
